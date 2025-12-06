@@ -3,12 +3,13 @@ import { FcGoogle } from "react-icons/fc";
 import useAuth from "../../hooks/useAuth";
 import { toast } from "react-hot-toast";
 import { TbFidgetSpinner } from "react-icons/tb";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useForm } from "react-hook-form";
 import Button from "../../components/Shared/Button/Button";
+import axios from "axios";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const SignUp = () => {
-  const axios = useAxiosSecure();
+  const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state || "/";
@@ -27,7 +28,6 @@ const SignUp = () => {
     const password = data.password;
     const email = data.email;
 
-    // Create user with email/password
     createUser(email, password)
       .then((result) => {
         const image = data.photo[0];
@@ -45,7 +45,7 @@ const SignUp = () => {
             email: email,
           };
 
-          axios.post("/user", userData).then(() => {});
+          axiosSecure.post("/users", userData).then(() => {});
 
           updateUserProfile(name, photoURL).then(() => {
             toast.success("Successfully created an account");
@@ -70,7 +70,6 @@ const SignUp = () => {
       toast.error(err?.message);
     }
   };
-  console.log(import.meta.env.VITE_IMAGEBB_API);
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-white">

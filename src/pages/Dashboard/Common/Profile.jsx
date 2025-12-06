@@ -1,50 +1,61 @@
-import useAuth from '../../../hooks/useAuth'
-import coverImg from '../../../assets/images/cover.jpg'
+import useAuth from "../../../hooks/useAuth";
+import coverImg from "../../../assets/images/cover.jpg";
 
 const Profile = () => {
-  const { user } = useAuth()
+  const { user } = useAuth();
 
   return (
-    <div className='flex justify-center items-center h-screen'>
-      <div className='bg-white shadow-lg rounded-2xl md:w-4/5 lg:w-3/5'>
+    <div className="flex justify-center items-center min-h-screen px-4 py-8">
+      <div className="bg-white shadow-lg rounded-2xl w-full sm:w-4/5 lg:w-3/5">
+        {/* Cover Image */}
         <img
-          alt='cover photo'
+          alt="cover photo"
           src={coverImg}
-          className='w-full mb-4 rounded-t-lg h-56'
+          className="w-full mb-4 rounded-t-lg h-40 sm:h-56 object-cover"
         />
-        <div className='flex flex-col items-center justify-center p-4 -mt-16'>
-          <a href='#' className='relative block'>
-            <img
-              alt='profile'
-              src={user?.photoURL}
-              className='mx-auto object-cover rounded-full h-24 w-24  border-2 border-white '
-            />
-          </a>
 
-          <p className='p-2 px-4 text-xs text-white bg-lime-500 rounded-full'>
+        {/* Profile Content */}
+        <div className="flex flex-col items-center justify-center p-4 -mt-14 sm:-mt-16">
+          {/* Profile Picture */}
+          <div className="relative">
+            <img
+              alt="profile"
+              src={user?.photoURL}
+              className="mx-auto object-cover rounded-full h-20 w-20 sm:h-24 sm:w-24 border-4 border-white"
+            />
+          </div>
+
+          <p className="p-2 px-4 text-xs text-white bg-lime-500 rounded-full mt-2">
             Customer
           </p>
-          <p className='mt-2 text-xl font-medium text-gray-800 '>
+
+          <p className="mt-2 text-lg sm:text-xl font-medium text-gray-800">
             User Id: {user?.uid}
           </p>
-          <div className='w-full p-2 mt-4 rounded-lg'>
-            <div className='flex flex-wrap items-center justify-between text-sm text-gray-600 '>
-              <p className='flex flex-col'>
+
+          {/* Info + Buttons Section */}
+          <div className="w-full p-4 mt-4 rounded-lg">
+            <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 sm:justify-between text-sm text-gray-600">
+              {/* Name */}
+              <p className="flex flex-col w-full sm:w-[45%]">
                 Name
-                <span className='font-bold text-gray-600 '>
+                <span className="font-bold text-gray-700">
                   {user?.displayName}
                 </span>
               </p>
-              <p className='flex flex-col'>
+
+              {/* Email */}
+              <p className="flex flex-col w-full sm:w-[45%]">
                 Email
-                <span className='font-bold text-gray-600 '>{user?.email}</span>
+                <span className="font-bold text-gray-700">{user?.email}</span>
               </p>
 
-              <div>
-                <button className='bg-lime-500  px-10 py-1 rounded-lg text-white cursor-pointer hover:bg-lime-800 block mb-1'>
+              {/* Buttons */}
+              <div className="flex flex-col w-full sm:w-auto gap-2 mt-2 sm:mt-0">
+                <button className="bg-lime-500 px-6 py-2 rounded-lg text-white cursor-pointer hover:bg-lime-700 transition">
                   Update Profile
                 </button>
-                <button className='bg-lime-500 px-7 py-1 rounded-lg text-white cursor-pointer hover:bg-lime-800'>
+                <button className="bg-lime-500 px-6 py-2 rounded-lg text-white cursor-pointer hover:bg-lime-700 transition">
                   Change Password
                 </button>
               </div>
@@ -53,7 +64,7 @@ const Profile = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Profile
+export default Profile;
