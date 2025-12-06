@@ -10,21 +10,47 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const links = (
     <>
-      <NavLink className="md:px-2 px-4 py-3 md:py-0 hover:bg-neutral-100 transition font-semibold">
+      <NavLink
+        to={"/"}
+        className="md:px-2 px-4 py-3 md:py-0 hover:bg-neutral-100 transition font-semibold"
+      >
         Home
       </NavLink>
-      <NavLink className="md:px-2 px-4 py-3 md:py-0 hover:bg-neutral-100 transition font-semibold">
-        Add Lesson
-      </NavLink>
-      <NavLink className="md:px-2 px-4 py-3 md:py-0 hover:bg-neutral-100 transition font-semibold">
-        My Lessons
-      </NavLink>
-      <NavLink className="md:px-2 px-4 py-3 md:py-0 hover:bg-neutral-100 transition font-semibold">
+
+      <NavLink
+        to={"/public-lessons"}
+        className="md:px-2 px-4 py-3 md:py-0 hover:bg-neutral-100 transition font-semibold"
+      >
         Public Lessons
       </NavLink>
-      <NavLink className="md:px-2 px-4 py-3 md:py-0 hover:bg-neutral-100 transition font-semibold">
+
+      <NavLink
+        to={"/dashboard/add-lesson"}
+        className="md:px-2 px-4 py-3 md:py-0 hover:bg-neutral-100 transition font-semibold"
+      >
+        Add Lesson
+      </NavLink>
+      <NavLink
+        to={"/dashboard/my-lesson"}
+        className="md:px-2 px-4 py-3 md:py-0 hover:bg-neutral-100 transition font-semibold"
+      >
+        My Lessons
+      </NavLink>
+
+      <NavLink
+        to={"/upgrade"}
+        className="md:px-2 px-4 py-3 md:py-0 hover:bg-neutral-100 transition font-semibold"
+      >
         upgrade
       </NavLink>
+      {!user && (
+        <NavLink
+          to={"/login"}
+          className="md:px-2 px-4 py-3 md:py-0 hover:bg-neutral-100 transition font-semibold"
+        >
+          Login
+        </NavLink>
+      )}
     </>
   );
 
@@ -36,7 +62,7 @@ const Navbar = () => {
             {/* Logo */}
             <Link to="/">
               <img
-                className="h-15 w-15"
+                className="h-20 w-20"
                 src={logo}
                 alt="Digital Life Lessons"
               />
@@ -69,11 +95,11 @@ const Navbar = () => {
                   <div className="flex flex-col cursor-pointer">
                     {user && (
                       <div className="flex items-center justify-between py-3 px-2 border-b-2">
-                        <p className="font-medium text-wrap">
+                        <p className="font-semibold text-wrap">
                           {user?.displayName}
                         </p>
                         <img
-                          className="rounded-full h-10 w-10 outline-3 outline-orange-300 mt-3 mr-3"
+                          className="rounded-full h-12 w-12 outline-3 outline-orange-300"
                           referrerPolicy="no-referrer"
                           src={
                             user && user.photoURL ? user.photoURL : avatarImg
@@ -85,6 +111,12 @@ const Navbar = () => {
                     <div className="flex flex-col md:hidden ">{links}</div>
                     {user ? (
                       <>
+                        <NavLink
+                          to="/dashboard/profile"
+                          className="px-4 py-3 hover:bg-neutral-100 transition font-semibold"
+                        >
+                          Profile
+                        </NavLink>
                         <NavLink
                           to="/dashboard"
                           className="px-4 py-3 hover:bg-neutral-100 transition font-semibold"

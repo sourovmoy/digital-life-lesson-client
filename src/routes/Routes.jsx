@@ -8,6 +8,9 @@ import PrivateRoute from "./PrivateRoute";
 import AddLesson from "../pages/AddLesson/AddLesson";
 import DashboardLayout from "../layouts/DashboardLayout";
 import Profile from "../pages/Dashboard/Common/Profile";
+import MyLessons from "../pages/MyLessons/MyLessons";
+import PublicLessons from "../pages/PublicLessons/PublicLessons";
+import Upgrade from "../pages/Upgrade/Upgrade";
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +23,18 @@ export const router = createBrowserRouter([
         Component: Home,
       },
       {
+        path: "/public-lessons",
+        Component: PublicLessons,
+      },
+      {
+        path: "/upgrade",
+        element: (
+          <PrivateRoute>
+            <Upgrade />
+          </PrivateRoute>
+        ),
+      },
+      {
         path: "/login",
         element: <Login />,
       },
@@ -29,6 +44,7 @@ export const router = createBrowserRouter([
 
   {
     path: "/dashboard",
+    errorElement: <ErrorPage />,
     element: (
       <PrivateRoute>
         <DashboardLayout />
@@ -38,6 +54,14 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/profile",
         element: <Profile />,
+      },
+      {
+        path: "/dashboard/add-lesson",
+        element: <AddLesson />,
+      },
+      {
+        path: "/dashboard/my-lesson",
+        element: <MyLessons />,
       },
     ],
   },

@@ -1,8 +1,11 @@
 import useAuth from "../../../hooks/useAuth";
 import coverImg from "../../../assets/images/cover.jpg";
+import useRole from "../../../hooks/useRole";
+import { ImSpinner10 } from "react-icons/im";
 
 const Profile = () => {
   const { user } = useAuth();
+  const { role, roleLoading } = useRole();
 
   return (
     <div className="flex justify-center items-center min-h-screen px-4 py-8">
@@ -25,8 +28,8 @@ const Profile = () => {
             />
           </div>
 
-          <p className="p-2 px-4 text-xs text-white bg-lime-500 rounded-full mt-2">
-            Customer
+          <p className="p-2 px-4 text-xs text-white bg-lime-600 rounded-full mt-2">
+            {roleLoading ? <ImSpinner10 className="animate-spin" /> : role}
           </p>
 
           <p className="mt-2 text-lg sm:text-xl font-medium text-gray-800">
