@@ -11,6 +11,8 @@ import Profile from "../pages/Dashboard/Common/Profile";
 import MyLessons from "../pages/MyLessons/MyLessons";
 import PublicLessons from "../pages/PublicLessons/PublicLessons";
 import Upgrade from "../pages/Upgrade/Upgrade";
+import PaymentSuccess from "../pages/Upgrade/PaymentSuccess";
+import PaymentCancel from "../pages/Upgrade/PaymentCancel";
 
 export const router = createBrowserRouter([
   {
@@ -31,6 +33,22 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <Upgrade />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/upgrade/success",
+        element: (
+          <PrivateRoute>
+            <PaymentSuccess />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/upgrade/cancel",
+        element: (
+          <PrivateRoute>
+            <PaymentCancel />
           </PrivateRoute>
         ),
       },

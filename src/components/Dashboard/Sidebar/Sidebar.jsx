@@ -52,11 +52,7 @@ const Sidebar = () => {
             {/* Logo */}
             <div className="hidden md:flex  justify-start ml-5 items-center mx-auto">
               <Link to="/">
-                <img
-                  className="h-20 w-20 shadow-lg rounded-lg"
-                  src={logo}
-                  alt="logo"
-                />
+                <img className="h-20 w-20" src={logo} alt="logo" />
               </Link>
             </div>
           </div>
@@ -66,7 +62,7 @@ const Sidebar = () => {
             {/*  Menu Items */}
             <nav>
               {/* Common Menu */}
-              <UserMenu setActive={setActive} isActive={isActive} />
+              <UserMenu handleToggle={handleToggle} />
               {/* Role-Based Menu */}
             </nav>
           </div>
