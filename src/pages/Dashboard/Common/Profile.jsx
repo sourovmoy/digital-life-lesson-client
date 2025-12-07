@@ -2,10 +2,11 @@ import useAuth from "../../../hooks/useAuth";
 import coverImg from "../../../assets/images/cover.jpg";
 import useRole from "../../../hooks/useRole";
 import { ImSpinner10 } from "react-icons/im";
+import { GoStarFill } from "react-icons/go";
 
 const Profile = () => {
   const { user } = useAuth();
-  const { role, roleLoading } = useRole();
+  const { role, isPremium, roleLoading } = useRole();
 
   return (
     <div className="flex justify-center items-center min-h-screen px-4 py-8">
@@ -26,6 +27,9 @@ const Profile = () => {
               src={user?.photoURL}
               className="mx-auto object-cover rounded-full h-20 w-20 sm:h-24 sm:w-24 border-4 border-white"
             />
+            <span className="absolute -top-3 left-12">
+              {isPremium && <p className="text-4xl">⭐</p>}
+            </span>
           </div>
 
           <p className="p-2 px-4 text-xs text-white bg-lime-600 rounded-full mt-2">

@@ -13,6 +13,7 @@ import PublicLessons from "../pages/PublicLessons/PublicLessons";
 import Upgrade from "../pages/Upgrade/Upgrade";
 import PaymentSuccess from "../pages/Upgrade/PaymentSuccess";
 import PaymentCancel from "../pages/Upgrade/PaymentCancel";
+import LessonDetails from "../components/Card/LessonDetails";
 
 export const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ export const router = createBrowserRouter([
       {
         path: "/public-lessons",
         Component: PublicLessons,
+      },
+      {
+        path: "/public-lessons/:id",
+        Component: LessonDetails,
       },
       {
         path: "/upgrade",

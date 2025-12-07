@@ -1,6 +1,21 @@
 @import "tailwindcss";
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes: winter --default, night --prefersdark;
+}
+
+@custom-variant dark (&:where([data-theme=night], [data-theme=night] *));
 
 a.active {
   @apply text-transparent bg-clip-text bg-gradient-to-r from-sky-950 to-sky-800;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
