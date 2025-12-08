@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
-import useAxios from "../../hooks/useAxios";
 import useRole from "../../hooks/useRole";
 import { FaBookmark, FaFlag, FaHeart, FaUserCircle } from "react-icons/fa";
 import {
@@ -15,13 +14,16 @@ import Container from "../Shared/Container";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const LessonDetails = () => {
+  const [showReportModal, setShowReportModal] = useState(false);
+
   const navigate = useNavigate();
   const { isPremium, roleLoading } = useRole();
   const { user } = useAuth();
+  // const [like, setLike] = useState(user?.email);
   const { id } = useParams();
-  const axios = useAxios();
   const axiosInstance = useAxiosSecure();
 
   const {
@@ -32,20 +34,28 @@ const LessonDetails = () => {
     queryKey: ["lesson", id],
     enabled: !!id,
     queryFn: async () => {
-      const res = await axios.get(`/lessons/${id}`);
+      const res = await axiosInstance.get(`/lessons/${id}`);
       return res.data.result;
     },
   });
   const isLocked = lesson?.accessLevel === "premium" && !isPremium;
 
   //likes
-  const handleLike = () => {
+  const handleLike = async () => {
     if (!user) {
       toast.error("Login First");
       navigate("/login");
     }
-    axiosInstance.patch(`lesson/${id}/likes`).then(() => refetch());
+    await axiosInstance.patch(`lesson/${id}/likes`).then(() => {
+      refetch();
+    });
   };
+  // const handleUnlike = () => {
+  //   if (!user) {
+  //     toast.error("Login First");
+  //     navigate("/login");
+  //   }
+  // };
 
   // total lessons by creator
   const { data: totalLesson = [] } = useQuery({
@@ -57,6 +67,39 @@ const LessonDetails = () => {
       return res.data.result;
     },
   });
+  // report
+  const handleReport = (reason) => {
+    const updateReport = {
+      lessonId: id,
+      email: user?.email,
+      reason,
+      timestamp: new Date(),
+    };
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You want to report this lesson",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, report it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosInstance.post("/report", updateReport).then((res) => {
+          console.log(res.data);
+
+          if (res.data.result.insertedId) {
+            Swal.fire({
+              title: "Reported!",
+              text: "Your have been reported successfully.",
+              icon: "success",
+            });
+            setShowReportModal(false);
+          }
+        });
+      }
+    });
+  };
 
   if (isLoading || roleLoading) {
     return <LoadingSpinner />;
@@ -141,22 +184,19 @@ const LessonDetails = () => {
               onClick={handleLike}
               className="px-4 py-2 bg-red-100 dark:bg-red-700 rounded-lg text-sm sm:text-base"
             >
-              {lesson?.likes.length === 0 ? (
-                <span className="flex items-center gap-2 justify-center">
-                  <FaHeart /> Like
-                </span>
-              ) : (
-                <span className="flex items-center gap-2 justify-center">
-                  <FaHeart color="red" /> Like
-                </span>
-              )}
+              <span className="flex items-center gap-2 justify-center">
+                <FaHeart color="red" /> Like
+              </span>
             </button>
 
             <button className="px-4 py-2 bg-blue-100 dark:bg-blue-700 rounded-lg flex items-center gap-2 text-sm sm:text-base">
               <FaBookmark /> Save
             </button>
 
-            <button className="px-4 py-2 bg-yellow-100 dark:bg-yellow-700 rounded-lg flex items-center gap-2 text-sm sm:text-base">
+            <button
+              onClick={() => setShowReportModal(true)}
+              className="px-4 py-2 bg-yellow-100 dark:bg-yellow-700 rounded-lg flex items-center gap-2 text-sm sm:text-base"
+            >
               <FaFlag /> Report
             </button>
 
@@ -173,37 +213,36 @@ const LessonDetails = () => {
       )}
 
       {/* Report Modal */}
-      {/* {showReportModal && (
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-              <div className="bg-white dark:bg-gray-900 p-6 rounded-xl w-96">
-                <h3 className="text-xl font-bold mb-4">Report Lesson</h3>
+      {showReportModal && (
+        <div className="fixed inset-0 bg-opacity-0  flex justify-center items-center">
+          <div className="bg-white dark:bg-gray-900 p-6 rounded-xl w-96">
+            <h3 className="text-xl font-bold mb-4">Report Lesson</h3>
+            {[
+              "Inappropriate Content",
+              "Hate Speech",
+              "Misleading Information",
+              "Spam",
+              "Disturbing Content",
+              "Other",
+            ].map((reason) => (
+              <button
+                key={reason}
+                onClick={() => handleReport(reason)}
+                className="block w-full text-left p-2 hover:bg-gray-200 dark:hover:bg-gray-800"
+              >
+                {reason}
+              </button>
+            ))}
 
-                {[
-                  "Inappropriate Content",
-                  "Hate Speech",
-                  "Misleading Information",
-                  "Spam",
-                  "Disturbing Content",
-                  "Other",
-                ].map((reason) => (
-                  <button
-                    key={reason}
-                    onClick={() => handleReport(reason)}
-                    className="block w-full text-left p-2 hover:bg-gray-200 dark:hover:bg-gray-800"
-                  >
-                    {reason}
-                  </button>
-                ))}
-
-                <button
-                  onClick={() => setShowReportModal(false)}
-                  className="mt-4 px-4 py-2 bg-gray-400 rounded-lg text-white w-full"
-                >
-                  Cancel
-                </button>
-              </div>
-            </div>
-          )} */}
+            <button
+              onClick={() => setShowReportModal(false)}
+              className="mt-4 px-4 py-2 bg-gray-400 rounded-lg text-white w-full"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
     </Container>
   );
 };

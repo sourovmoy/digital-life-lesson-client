@@ -8,9 +8,12 @@ const PrivateRoute = ({ children }) => {
   const location = useLocation();
 
   if (loading) return <LoadingSpinner />;
-  if (user) return children;
-  if (!user) toast.error("Please Log in First");
-  return <Navigate to="/login" state={location.pathname} replace="true" />;
+
+  if (!user) {
+    toast.error("Please log in first");
+    return <Navigate to={"/login"} state={location.pathname}></Navigate>;
+  }
+  return <div>{children}</div>;
 };
 
 export default PrivateRoute;

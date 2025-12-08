@@ -14,9 +14,9 @@ const PublicLessons = () => {
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["lessons"],
+    queryKey: ["PublicLessons"],
     queryFn: async () => {
-      const res = await axios.get("/lessons");
+      const res = await axios.get("/public-lessons");
       return res.data.result;
     },
   });
