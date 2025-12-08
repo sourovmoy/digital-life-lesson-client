@@ -12,7 +12,7 @@ const SignUp = () => {
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state || "/";
+  const from = location.state || "/dashboard";
 
   const { createUser, updateUserProfile, signInWithGoogle, loading, setUser } =
     useAuth();

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { useNavigate, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import useAxios from "../../hooks/useAxios";
 import useRole from "../../hooks/useRole";
 import { FaBookmark, FaFlag, FaHeart, FaUserCircle } from "react-icons/fa";
@@ -13,15 +13,22 @@ import {
 import LoadingSpinner from "../Shared/LoadingSpinner";
 import Container from "../Shared/Container";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const LessonDetails = () => {
   const navigate = useNavigate();
   const { isPremium, roleLoading } = useRole();
+  const { user } = useAuth();
   const { id } = useParams();
   const axios = useAxios();
   const axiosInstance = useAxiosSecure();
 
-  const { data: lesson = {}, isLoading } = useQuery({
+  const {
+    data: lesson = {},
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["lesson", id],
     enabled: !!id,
     queryFn: async () => {
@@ -30,9 +37,26 @@ const LessonDetails = () => {
     },
   });
   const isLocked = lesson?.accessLevel === "premium" && !isPremium;
+
+  //likes
   const handleLike = () => {
-    axiosInstance.patch(`lesson/${id}/likes`).then();
+    if (!user) {
+      toast.error("Login First");
+      navigate("/login");
+    }
+    axiosInstance.patch(`lesson/${id}/likes`).then(() => refetch());
   };
+
+  // total lessons by creator
+  const { data: totalLesson = [] } = useQuery({
+    queryKey: ["totalLesson", lesson?.creator?.email],
+    queryFn: async () => {
+      const res = await axiosInstance.get(
+        `/lessons?email=${lesson?.creator?.email}`
+      );
+      return res.data.result;
+    },
+  });
 
   if (isLoading || roleLoading) {
     return <LoadingSpinner />;
@@ -40,23 +64,6 @@ const LessonDetails = () => {
 
   return (
     <Container>
-      {/* PREMIUM LOCKED VIEW */}
-      {/* {isLocked && (
-        <div className="text-center p-6 sm:p-10 bg-gray-100 dark:bg-gray-800 rounded-xl">
-          <FaLock className="text-5xl sm:text-6xl mx-auto text-yellow-500 mb-4" />
-          <h2 className="text-xl sm:text-2xl font-bold mb-2">Premium Lesson</h2>
-          <p className="text-gray-600 dark:text-gray-300 mb-6 text-sm sm:text-base">
-            Upgrade your plan to view this premium life lesson.
-          </p>
-          <button
-            onClick={() => navigate("/upgrade")}
-            className="bg-lime-500 text-white px-5 sm:px-6 py-2 rounded-lg hover:bg-lime-600"
-          >
-            Upgrade Now
-          </button>
-        </div>
-      )} */}
-
       {/* UNLOCKED CONTENT */}
       {!isLocked && (
         <>
@@ -97,30 +104,52 @@ const LessonDetails = () => {
 
           {/* Creator Section */}
           <div className="flex items-center gap-3 mb-8">
-            <FaUserCircle className="text-4xl sm:text-5xl text-gray-400" />
+            {lesson?.creator?.photoURL ? (
+              <img src={lesson?.creator?.photoURL} alt="" />
+            ) : (
+              <FaUserCircle className="text-4xl sm:text-5xl text-gray-400" />
+            )}
             <div>
               <h3 className="text-base sm:text-lg font-bold">
                 {lesson?.creator?.name}
               </h3>
-              <button className="underline text-lime-600 dark:text-lime-400 mt-1 text-sm">
+              <h3>
+                Total Lessons Created{" "}
+                <span className="text-xl font-medium">
+                  {totalLesson?.length}
+                </span>
+              </h3>
+              <Link
+                to={"/dashboard/profile"}
+                className="underline text-lime-600 dark:text-lime-400 mt-1 text-sm"
+              >
                 View all lessons by this author →
-              </button>
+              </Link>
             </div>
           </div>
 
           {/* Stats */}
           <div className="flex flex-wrap gap-4 sm:gap-6 text-gray-600 dark:text-gray-300 mb-8 text-sm sm:text-base">
-            <span>❤️ {lesson?.likesCount || 0} Likes</span>
+            <span>❤️ {lesson?.likes.length || 0} Likes</span>
             <span>🔖 {lesson?.favoritesCount || 0} Saves</span>
+            <span>{Math.floor(Math.random() * 10000)}</span>
           </div>
 
           {/* Interaction Buttons */}
           <div className="flex flex-wrap gap-3 sm:gap-4 mb-8">
             <button
               onClick={handleLike}
-              className="px-4 py-2 bg-red-100 dark:bg-red-700 rounded-lg flex items-center gap-2 text-sm sm:text-base"
+              className="px-4 py-2 bg-red-100 dark:bg-red-700 rounded-lg text-sm sm:text-base"
             >
-              <FaHeart /> Like
+              {lesson?.likes.length === 0 ? (
+                <span className="flex items-center gap-2 justify-center">
+                  <FaHeart /> Like
+                </span>
+              ) : (
+                <span className="flex items-center gap-2 justify-center">
+                  <FaHeart color="red" /> Like
+                </span>
+              )}
             </button>
 
             <button className="px-4 py-2 bg-blue-100 dark:bg-blue-700 rounded-lg flex items-center gap-2 text-sm sm:text-base">
