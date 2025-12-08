@@ -13,7 +13,7 @@ const LessonCard = ({ lesson }) => {
       toast.error("Please Upgrade to Premium");
       navigate("/upgrade");
     } else {
-      navigate(`/public-lessons/${lesson._id}`);
+      navigate(`/lessons/${lesson._id}`);
     }
   };
   return (

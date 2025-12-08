@@ -30,8 +30,12 @@ export const router = createBrowserRouter([
         Component: PublicLessons,
       },
       {
-        path: "/public-lessons/:id",
-        Component: LessonDetails,
+        path: "/lessons/:id",
+        element: (
+          <PrivateRoute>
+            <LessonDetails />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/upgrade",
