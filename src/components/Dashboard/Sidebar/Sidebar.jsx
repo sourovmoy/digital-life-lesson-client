@@ -10,15 +10,19 @@ import { AiOutlineBars } from "react-icons/ai";
 // User Menu
 import MenuItem from "./Menu/MenuItem";
 import UserMenu from "./Menu/UsersMenu/UserMenu";
+import useRole from "../../../hooks/useRole";
+import LoadingSpinner from "../../Shared/LoadingSpinner";
 
 const Sidebar = () => {
-  const { logOut } = useAuth();
+  const { logOut, loading } = useAuth();
+  const { role, roleLoading } = useRole();
   const [isActive, setActive] = useState(false);
 
   // Sidebar Responsive Handler
   const handleToggle = () => {
     setActive(!isActive);
   };
+  if (loading || roleLoading) return <LoadingSpinner />;
 
   return (
     <>
@@ -62,7 +66,8 @@ const Sidebar = () => {
             {/*  Menu Items */}
             <nav>
               {/* Common Menu */}
-              <UserMenu handleToggle={handleToggle} />
+              {role === "user" && <UserMenu handleToggle={handleToggle} />}
+
               {/* Role-Based Menu */}
             </nav>
           </div>

@@ -14,6 +14,8 @@ import Upgrade from "../pages/Upgrade/Upgrade";
 import PaymentSuccess from "../pages/Upgrade/PaymentSuccess";
 import PaymentCancel from "../pages/Upgrade/PaymentCancel";
 import LessonDetails from "../components/Card/LessonDetails";
+import UsersHome from "../pages/Dashboard/Users/UsersHome";
+import MyFavorites from "../pages/Dashboard/Users/MyFavorites/MyFavorites";
 
 export const router = createBrowserRouter([
   {
@@ -79,8 +81,8 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "/dashboard/profile",
-        element: <Profile />,
+        index: true,
+        element: <UsersHome />,
       },
       {
         path: "/dashboard/add-lesson",
@@ -89,6 +91,14 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/my-lesson",
         element: <MyLessons />,
+      },
+      {
+        path: "/dashboard/my-favorites",
+        element: <MyFavorites />,
+      },
+      {
+        path: "/dashboard/profile",
+        element: <Profile />,
       },
     ],
   },
