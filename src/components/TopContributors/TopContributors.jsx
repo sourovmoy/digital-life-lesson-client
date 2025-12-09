@@ -10,7 +10,6 @@ const TopContributors = () => {
     queryKey: ["topContributors"],
     queryFn: async () => {
       const res = await axios.get("/users/top-contributors");
-      console.log(res.data);
       return res.data.result;
     },
   });

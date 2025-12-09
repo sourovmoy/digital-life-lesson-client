@@ -16,10 +16,6 @@ import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import CommentsSection from "../Comments/CommentsSection";
-import {
-  addLessons,
-  getLessons,
-} from "../../Functions/LocalStorage/LocalStorage";
 import SimilarLessons from "./SimilarLessons";
 import SimilarTones from "./SimilarTones";
 
@@ -32,7 +28,6 @@ const LessonDetails = () => {
   // const [like, setLike] = useState(user?.email);
   const { id } = useParams();
   const axiosInstance = useAxiosSecure();
-
   const {
     data: lesson = {},
     isLoading,
@@ -102,23 +97,13 @@ const LessonDetails = () => {
       }
     });
   };
-  useEffect(() => {
-    const allSaveLessons = getLessons();
-    if (allSaveLessons.some((l) => l === id)) {
-      setSave(true);
-    }
-  }, [id]);
 
-  const handelSave = () => {
-    const savedLessons = getLessons();
-    if (savedLessons.includes(id)) {
-      toast.error("Lesson already saved in Favorites list");
-      setSave(true);
-      return;
-    }
-    addLessons(id);
-    toast.success("Lesson save to Favorites list");
-    setSave(true);
+  const handelSave = async (id) => {
+    axiosInstance.patch(`/lesson/${id}/favorites`).then((res) => {
+      if (res.data.result.modifiedCount) {
+        toast.success("Added to my favorite Lists");
+      }
+    });
   };
 
   if (isLoading || roleLoading) {
@@ -210,7 +195,7 @@ const LessonDetails = () => {
             </button>
 
             <button
-              onClick={handelSave}
+              onClick={() => handelSave(lesson?._id)}
               className="px-4 py-2 bg-blue-100 dark:bg-blue-700 rounded-lg flex items-center gap-2 text-sm sm:text-base hover:scale-105"
             >
               <FaBookmark /> {save ? "Saved" : "Save"}

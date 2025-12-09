@@ -4,6 +4,8 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 import UserStars from "../../../components/Dashboard/Sidebar/Menu/UsersMenu/UserHome/UserStars";
 import useAuth from "../../../hooks/useAuth";
+import RecentlyAdd from "./RecentlyAdd";
+import { Link } from "react-router";
 
 const UsersHome = () => {
   const axios = useAxiosSecure();
@@ -26,18 +28,27 @@ const UsersHome = () => {
       <UserStars totalCreated={totalCreated} />
 
       {/* Recently Added Lessons */}
-
+      <RecentlyAdd totalCreated={totalCreated} />
       {/* Quick Shortcuts */}
       <div className="flex flex-wrap gap-4 mt-6">
-        <button className="px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600">
+        <Link
+          to={"/dashboard/add-lesson"}
+          className="px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600"
+        >
           Add Lesson
-        </button>
-        <button className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+        </Link>
+        <Link
+          to={"/dashboard/my-favorites"}
+          className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+        >
           My Favorites
-        </button>
-        <button className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600">
+        </Link>
+        <Link
+          to={"/dashboard/my-lesson"}
+          className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
+        >
           My Lessons
-        </button>
+        </Link>
       </div>
     </div>
   );

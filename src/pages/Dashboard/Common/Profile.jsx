@@ -3,10 +3,12 @@ import coverImg from "../../../assets/images/cover.jpg";
 import useRole from "../../../hooks/useRole";
 import { ImSpinner10 } from "react-icons/im";
 import { GoStarFill } from "react-icons/go";
+import { useRef } from "react";
 
 const Profile = () => {
   const { user } = useAuth();
   const { role, isPremium, roleLoading } = useRole();
+  const modalRef = useRef(null);
 
   return (
     <div className="flex justify-center items-center min-h-screen px-4 py-8">
@@ -27,8 +29,10 @@ const Profile = () => {
               src={user?.photoURL}
               className="mx-auto object-cover rounded-full h-20 w-20 sm:h-24 sm:w-24 border-4 border-white"
             />
-            <span className="absolute -top-3 left-12">
-              {isPremium && <p className="text-4xl">⭐</p>}
+            <span className="top-5">
+              {isPremium && (
+                <div className="badge badge-warning">⭐ Premium</div>
+              )}
             </span>
           </div>
 
@@ -59,12 +63,41 @@ const Profile = () => {
 
               {/* Buttons */}
               <div className="flex flex-col w-full sm:w-auto gap-2 mt-2 sm:mt-0">
-                <button className="bg-lime-500 px-6 py-2 rounded-lg text-white cursor-pointer hover:bg-lime-700 transition">
+                <button
+                  // onClick={() => handelUpdate()}
+                  className="bg-lime-500 px-6 py-2 rounded-lg text-white cursor-pointer hover:bg-lime-700 transition"
+                >
                   Update Profile
                 </button>
-                <button className="bg-lime-500 px-6 py-2 rounded-lg text-white cursor-pointer hover:bg-lime-700 transition">
-                  Change Password
+                {/* Open the modal using document.getElementById('ID').showModal() method */}
+                <button
+                  className="btn"
+                  onClick={() =>
+                    document.getElementById("my_modal_5").showModal()
+                  }
+                >
+                  open modal
                 </button>
+                <dialog
+                  id="my_modal_5"
+                  className="modal modal-bottom sm:modal-middle"
+                >
+                  <div className="modal-box">
+                    <h3 className="font-bold text-lg">Hello!</h3>
+                    <p className="py-4">
+                      Press ESC key or click the button below to close
+                    </p>
+                    <div className="modal-action">
+                      <form method="dialog">
+                        {/* if there is a button in form, it will close the modal */}
+                        <button className="btn">Close</button>
+                      </form>
+                    </div>
+                  </div>
+                </dialog>
+                {/* <button className="bg-lime-500 px-6 py-2 rounded-lg text-white cursor-pointer hover:bg-lime-700 transition">
+                  Change Password
+                </button> */}
               </div>
             </div>
           </div>
