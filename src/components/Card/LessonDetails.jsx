@@ -21,7 +21,7 @@ import SimilarTones from "./SimilarTones";
 
 const LessonDetails = () => {
   const [showReportModal, setShowReportModal] = useState(false);
-  const [save, setSave] = useState(false);
+  // const [save, setSave] = useState(false);
   const navigate = useNavigate();
   const { isPremium, roleLoading } = useRole();
   const { user } = useAuth();
@@ -41,6 +41,7 @@ const LessonDetails = () => {
     },
   });
   const isLocked = lesson?.accessLevel === "premium" && !isPremium;
+  const save = lesson?.favorites?.includes(user?.email);
 
   //likes
   const handleLike = async () => {
@@ -101,6 +102,7 @@ const LessonDetails = () => {
   const handelSave = async (id) => {
     axiosInstance.patch(`/lesson/${id}/favorites`).then((res) => {
       if (res.data.result.modifiedCount) {
+        refetch();
         toast.success("Added to my favorite Lists");
       }
     });
@@ -195,6 +197,7 @@ const LessonDetails = () => {
             </button>
 
             <button
+              disabled={save}
               onClick={() => handelSave(lesson?._id)}
               className="px-4 py-2 bg-blue-100 dark:bg-blue-700 rounded-lg flex items-center gap-2 text-sm sm:text-base hover:scale-105"
             >

@@ -1,14 +1,61 @@
 import useAuth from "../../../hooks/useAuth";
 import coverImg from "../../../assets/images/cover.jpg";
 import useRole from "../../../hooks/useRole";
-import { ImSpinner10 } from "react-icons/im";
+import { ImSpinner, ImSpinner10 } from "react-icons/im";
 import { GoStarFill } from "react-icons/go";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 
 const Profile = () => {
-  const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
+  const { user, updateUserProfile, setUser } = useAuth();
   const { role, isPremium, roleLoading } = useRole();
-  const modalRef = useRef(null);
+  const [loading, setLoading] = useState(false);
+  const modalRef = useRef();
+  const handelUpdate = () => {
+    modalRef.current.showModal();
+  };
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = async (data) => {
+    setLoading(true);
+    const image = data.photo[0];
+    const formData = new FormData();
+    formData.append("image", image);
+
+    const uri = `https://api.imgbb.com/1/upload?key=${
+      import.meta.env.VITE_IMAGEBB_API
+    }`;
+    axios.post(uri, formData).then((res) => {
+      const photoURL = res.data.data.display_url;
+      const userData = {
+        displayName: data.displayName,
+        photoURL: photoURL,
+      };
+
+      axiosSecure.patch("/users", userData).then(() => {});
+
+      updateUserProfile(data.displayName, photoURL).then(() => {
+        modalRef.current.close();
+        reset();
+        toast.success("Successfully Update an account");
+        setUser({
+          ...user,
+          displayName: data.displayName,
+          photoURL: photoURL,
+        });
+        setLoading(false);
+      });
+    });
+  };
 
   return (
     <div className="flex justify-center items-center min-h-screen px-4 py-8">
@@ -64,37 +111,99 @@ const Profile = () => {
               {/* Buttons */}
               <div className="flex flex-col w-full sm:w-auto gap-2 mt-2 sm:mt-0">
                 <button
-                  // onClick={() => handelUpdate()}
+                  onClick={() => handelUpdate()}
                   className="bg-lime-500 px-6 py-2 rounded-lg text-white cursor-pointer hover:bg-lime-700 transition"
                 >
                   Update Profile
                 </button>
-                {/* Open the modal using document.getElementById('ID').showModal() method */}
-                <button
-                  className="btn"
-                  onClick={() =>
-                    document.getElementById("my_modal_5").showModal()
-                  }
-                >
-                  open modal
-                </button>
-                <dialog
-                  id="my_modal_5"
-                  className="modal modal-bottom sm:modal-middle"
-                >
-                  <div className="modal-box">
-                    <h3 className="font-bold text-lg">Hello!</h3>
-                    <p className="py-4">
-                      Press ESC key or click the button below to close
-                    </p>
+                {/* Modal */}
+                <dialog ref={modalRef} className="modal">
+                  <div className="modal-box w-11/12 max-w-lg">
+                    <h2 className="text-2xl font-bold mb-4 text-center">
+                      Update Profile
+                    </h2>
+
+                    <form
+                      onSubmit={handleSubmit(onSubmit)}
+                      className="space-y-4"
+                    >
+                      {/* Display Name */}
+                      <div>
+                        <label className="font-medium">Display Name</label>
+                        <input
+                          type="text"
+                          placeholder="Enter new name"
+                          {...register("displayName", {
+                            required: "Name is required",
+                          })}
+                          className="w-full mt-1 p-2 border rounded focus:ring-2 focus:ring-blue-400 outline-none"
+                        />
+                        {errors.displayName && (
+                          <p className="text-red-500 text-sm mt-1">
+                            {errors.displayName.message}
+                          </p>
+                        )}
+                      </div>
+
+                      {/* Photo Upload */}
+                      <div>
+                        <label
+                          htmlFor="photo"
+                          className="block mb-2 text-sm font-medium text-gray-700"
+                        >
+                          Profile Image
+                        </label>
+
+                        <input
+                          id="photo"
+                          type="file"
+                          accept="image/*"
+                          {...register("photo", {
+                            required: "Photo is required",
+                          })}
+                          className="block w-full text-sm text-gray-500
+          file:mr-4 file:py-2 file:px-4
+          file:rounded-md file:border-0
+          file:text-sm file:font-semibold
+          file:bg-lime-50 file:text-lime-700
+          hover:file:bg-lime-100
+          bg-gray-100 border border-dashed border-lime-300 rounded-md cursor-pointer
+          focus:outline-none focus:ring-2 focus:ring-lime-400 focus:border-lime-400
+          py-2"
+                        />
+
+                        {errors.photo && (
+                          <p className="text-red-600 text-sm">
+                            {errors.photo.message}
+                          </p>
+                        )}
+                      </div>
+
+                      {/* Submit */}
+                      <button
+                        type="submit"
+                        disabled={loading}
+                        className="w-full bg-blue-600 text-white font-semibold py-2 rounded hover:bg-blue-700 transition"
+                      >
+                        {loading ? (
+                          <div className="flex justify-center">
+                            <ImSpinner className="animate-spin" />
+                          </div>
+                        ) : (
+                          "Update Profile"
+                        )}
+                      </button>
+                    </form>
+
+                    {/* Close Button */}
                     <div className="modal-action">
                       <form method="dialog">
-                        {/* if there is a button in form, it will close the modal */}
                         <button className="btn">Close</button>
                       </form>
                     </div>
                   </div>
                 </dialog>
+
                 {/* <button className="bg-lime-500 px-6 py-2 rounded-lg text-white cursor-pointer hover:bg-lime-700 transition">
                   Change Password
                 </button> */}

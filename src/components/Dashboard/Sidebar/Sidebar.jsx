@@ -80,6 +80,7 @@ const Sidebar = () => {
               icon={FcSettings}
               label="Profile"
               address="/dashboard/profile"
+              handleToggle={handleToggle}
             />
             <button
               onClick={logOut}
