@@ -16,6 +16,12 @@ import PaymentCancel from "../pages/Upgrade/PaymentCancel";
 import LessonDetails from "../components/Card/LessonDetails";
 import UsersHome from "../pages/Dashboard/Users/UsersHome";
 import MyFavorites from "../pages/Dashboard/Users/MyFavorites/MyFavorites";
+import AdminRoute from "./AdminRoute";
+import AdminHome from "../pages/Dashboard/Admin/AdminHome";
+import AdminDashboard from "../layouts/AdminDashboard";
+import ManageLessons from "../pages/Dashboard/Admin/ManageLessons";
+import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
+import AdminProfile from "../pages/Dashboard/Admin/AdminProfile";
 
 export const router = createBrowserRouter([
   {
@@ -99,6 +105,32 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/profile",
         element: <Profile />,
+      },
+    ],
+  },
+  {
+    path: "/dashboard/admin",
+    element: (
+      <AdminRoute>
+        <AdminDashboard />
+      </AdminRoute>
+    ),
+    children: [
+      {
+        index: true,
+        element: <AdminHome />,
+      },
+      {
+        path: "/dashboard/admin/manage-users",
+        element: <ManageUsers />,
+      },
+      {
+        path: "/dashboard/admin/manage-lessons",
+        element: <ManageLessons />,
+      },
+      {
+        path: "/dashboard/admin/profile",
+        element: <AdminProfile />,
       },
     ],
   },

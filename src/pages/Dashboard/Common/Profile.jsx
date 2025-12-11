@@ -105,8 +105,6 @@ const Profile = () => {
               User Id: {user?.uid}
             </p>
 
-            <UserStars totalCreated={totalCreated} />
-
             {/* Info + Buttons Section */}
             <div className="w-full p-4 mt-4 rounded-lg">
               <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 sm:justify-between text-sm text-gray-600">
@@ -225,6 +223,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
+      <UserStars totalCreated={totalCreated} />
       <UsersPublicLessons />
     </div>
   );

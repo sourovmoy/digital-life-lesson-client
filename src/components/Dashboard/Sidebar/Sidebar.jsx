@@ -9,6 +9,7 @@ import MenuItem from "./Menu/MenuItem";
 import UserMenu from "./Menu/UsersMenu/UserMenu";
 import useRole from "../../../hooks/useRole";
 import LoadingSpinner from "../../Shared/LoadingSpinner";
+import AdminMenu from "./AdminMenu/AdminMenu";
 
 const Sidebar = () => {
   const { logOut, loading } = useAuth();
@@ -69,6 +70,7 @@ const Sidebar = () => {
               />
               {/* Common Menu */}
               {role === "user" && <UserMenu handleToggle={handleToggle} />}
+              {role === "admin" && <AdminMenu handleToggle={handleToggle} />}
 
               {/* Role-Based Menu */}
             </nav>
