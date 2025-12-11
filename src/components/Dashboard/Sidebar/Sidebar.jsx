@@ -2,12 +2,9 @@ import { useState } from "react";
 import { Link } from "react-router";
 import useAuth from "../../../hooks/useAuth";
 import logo from "../../../assets/images/logo.png";
-
 import { GrLogout } from "react-icons/gr";
-import { FcSettings } from "react-icons/fc";
 import { AiOutlineBars } from "react-icons/ai";
-
-// User Menu
+import { FaHome } from "react-icons/fa";
 import MenuItem from "./Menu/MenuItem";
 import UserMenu from "./Menu/UsersMenu/UserMenu";
 import useRole from "../../../hooks/useRole";
@@ -18,7 +15,6 @@ const Sidebar = () => {
   const { role, roleLoading } = useRole();
   const [isActive, setActive] = useState(false);
 
-  // Sidebar Responsive Handler
   const handleToggle = () => {
     setActive(!isActive);
   };
@@ -65,6 +61,12 @@ const Sidebar = () => {
           <div className="flex flex-col justify-between flex-1 mt-6">
             {/*  Menu Items */}
             <nav>
+              <MenuItem
+                icon={FaHome}
+                label="Home"
+                address="/"
+                handleToggle={handleToggle}
+              />
               {/* Common Menu */}
               {role === "user" && <UserMenu handleToggle={handleToggle} />}
 
@@ -75,13 +77,6 @@ const Sidebar = () => {
           {/* Bottom Content */}
           <div>
             <hr />
-
-            <MenuItem
-              icon={FcSettings}
-              label="Profile"
-              address="/dashboard/profile"
-              handleToggle={handleToggle}
-            />
             <button
               onClick={logOut}
               className="flex cursor-pointer w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform"

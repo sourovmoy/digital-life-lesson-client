@@ -21,11 +21,9 @@ import SimilarTones from "./SimilarTones";
 
 const LessonDetails = () => {
   const [showReportModal, setShowReportModal] = useState(false);
-  // const [save, setSave] = useState(false);
   const navigate = useNavigate();
   const { isPremium, roleLoading } = useRole();
   const { user } = useAuth();
-  // const [like, setLike] = useState(user?.email);
   const { id } = useParams();
   const axiosInstance = useAxiosSecure();
   const {

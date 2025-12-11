@@ -4,6 +4,7 @@ import { FaRegAddressBook } from "react-icons/fa";
 import { PiBookOpenTextBold } from "react-icons/pi";
 import { MdDashboardCustomize } from "react-icons/md";
 import { GrFavorite } from "react-icons/gr";
+import { FcSettings } from "react-icons/fc";
 
 const UserMenu = ({ handleToggle }) => {
   return (
@@ -30,6 +31,12 @@ const UserMenu = ({ handleToggle }) => {
         label={"My Favorites"}
         address={"/dashboard/my-favorites"}
         icon={GrFavorite}
+        handleToggle={handleToggle}
+      />
+      <MenuItem
+        icon={FcSettings}
+        label="Profile"
+        address="/dashboard/profile"
         handleToggle={handleToggle}
       />
     </div>

@@ -12,7 +12,6 @@ const UserStars = ({ totalCreated }) => {
     queryKey: ["user-favorites"],
     queryFn: async () => {
       const res = await axios.get(`/lessons?favorites=true`);
-      console.log(res.data);
       return res.data.result;
     },
   });

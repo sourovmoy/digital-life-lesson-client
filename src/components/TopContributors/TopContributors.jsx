@@ -18,8 +18,8 @@ const TopContributors = () => {
 
   return (
     <div>
-      <h3 className="text-2xl font-bold mb-6 text-center">Top Contributors</h3>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6">
+      <h3 className="text-2xl font-bold mb-10 text-center">Top Contributors</h3>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 pt-10">
         {contributors.map((user) => (
           <div key={user._id} className="text-center">
             {user.photoURL ? (
