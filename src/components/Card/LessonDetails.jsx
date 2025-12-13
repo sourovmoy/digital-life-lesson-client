@@ -66,7 +66,7 @@ const LessonDetails = () => {
   // report
   const handleReport = (reason) => {
     const updateReport = {
-      lessonId: id,
+      name: user?.displayName,
       email: user?.email,
       reason,
       timestamp: new Date(),
@@ -81,18 +81,19 @@ const LessonDetails = () => {
       confirmButtonText: "Yes, report it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosInstance.post("/report", updateReport).then((res) => {
-          console.log(res.data);
-
-          if (res.data.result.insertedId) {
-            Swal.fire({
-              title: "Reported!",
-              text: "Your have been reported successfully.",
-              icon: "success",
-            });
-            setShowReportModal(false);
-          }
-        });
+        axiosInstance
+          .patch(`/report/${lesson?._id}`, updateReport)
+          .then((res) => {
+            console.log(res.data);
+            if (res.data.result.modifiedCount) {
+              Swal.fire({
+                title: "Reported!",
+                text: "Your have been reported successfully.",
+                icon: "success",
+              });
+              setShowReportModal(false);
+            }
+          });
       }
     });
   };
@@ -111,12 +112,12 @@ const LessonDetails = () => {
   }
 
   return (
-    <Container>
+    <Container className="px-3 sm:px-6 lg:px-10">
       {/* UNLOCKED CONTENT */}
       {!isLocked && (
         <>
           {/* Title */}
-          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-3">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-3 break-words">
             {lesson?.title}
           </h1>
 
@@ -131,19 +132,21 @@ const LessonDetails = () => {
           </div>
 
           {/* Description */}
-          <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-8 text-sm sm:text-base">
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-8 text-sm sm:text-base break-words">
             {lesson?.description}
           </p>
 
           {/* Metadata */}
-          <div className="bg-gray-100 dark:bg-gray-800 p-4 sm:p-5 rounded-lg mb-8 text-sm sm:text-base">
+          <div className="bg-gray-100 dark:bg-gray-800 p-4 sm:p-5 rounded-lg mb-8 text-sm sm:text-base space-y-2">
             <p>
               <strong>Created:</strong>{" "}
               {new Date(lesson?.createdAt).toLocaleDateString()}
             </p>
             <p>
               <strong>Updated:</strong>{" "}
-              {new Date(lesson?.updatedAt).toLocaleDateString()}
+              {lesson?.updatedAt
+                ? new Date(lesson?.updatedAt).toLocaleDateString()
+                : "Not updated"}
             </p>
             <p>
               <strong>Visibility:</strong> {lesson?.visibility}
@@ -151,17 +154,22 @@ const LessonDetails = () => {
           </div>
 
           {/* Creator Section */}
-          <div className="flex items-center gap-3 mb-8">
+          <div className="flex items-center gap-3 mb-8 flex-wrap">
             {lesson?.creator?.photoURL ? (
-              <img src={lesson?.creator?.photoURL} alt="" />
+              <img
+                src={lesson?.creator?.photoURL}
+                alt=""
+                className="w-12 h-12 sm:w-16 sm:h-16 rounded-full object-cover"
+              />
             ) : (
               <FaUserCircle className="text-4xl sm:text-5xl text-gray-400" />
             )}
+
             <div>
               <h3 className="text-base sm:text-lg font-bold">
                 {lesson?.creator?.name}
               </h3>
-              <h3>
+              <h3 className="text-sm sm:text-base">
                 Total Lessons Created{" "}
                 <span className="text-xl font-medium">
                   {totalLesson?.length}
@@ -187,7 +195,7 @@ const LessonDetails = () => {
           <div className="flex flex-wrap gap-3 sm:gap-4 mb-8">
             <button
               onClick={handleLike}
-              className="px-4 py-2 bg-red-100 dark:bg-red-700 rounded-lg text-sm sm:text-base hover:scale-105"
+              className="px-4 py-2 bg-red-100 dark:bg-red-700 rounded-lg text-sm sm:text-base hover:scale-105 transition"
             >
               <span className="flex items-center gap-2 justify-center">
                 <FaHeart color="red" /> {like ? "Unlike" : "Like"}
@@ -197,14 +205,14 @@ const LessonDetails = () => {
             <button
               disabled={save}
               onClick={() => handelSave(lesson?._id)}
-              className="px-4 py-2 bg-blue-100 dark:bg-blue-700 rounded-lg flex items-center gap-2 text-sm sm:text-base hover:scale-105"
+              className="px-4 py-2 bg-blue-100 dark:bg-blue-700 rounded-lg flex items-center gap-2 text-sm sm:text-base hover:scale-105 transition"
             >
               <FaBookmark /> {save ? "Saved" : "Save"}
             </button>
 
             <button
               onClick={() => setShowReportModal(true)}
-              className="px-4 py-2 bg-yellow-100 dark:bg-yellow-700 rounded-lg flex items-center gap-2 text-sm sm:text-base hover:scale-105"
+              className="px-4 py-2 bg-yellow-100 dark:bg-yellow-700 rounded-lg flex items-center gap-2 text-sm sm:text-base hover:scale-105 transition"
             >
               <FaFlag /> Report
             </button>
@@ -218,14 +226,17 @@ const LessonDetails = () => {
               <WhatsappIcon size={36} round />
             </WhatsappShareButton>
           </div>
+
           <CommentsSection
             lessonId={lesson?._id}
             comments={lesson.comments}
             refetchLesson={refetch}
           />
+
           <div className="my-5">
             <SimilarLessons category={lesson.category} />
           </div>
+
           <div className="my-5">
             <SimilarTones tone={lesson.emotionalTone} />
           </div>
@@ -234,9 +245,10 @@ const LessonDetails = () => {
 
       {/* Report Modal */}
       {showReportModal && (
-        <div className="fixed inset-0 bg-opacity-0  flex justify-center items-center">
-          <div className="bg-white dark:bg-gray-900 p-6 rounded-xl w-96">
+        <div className="fixed inset-0 bg-black/30 backdrop-blur flex justify-center items-center p-4">
+          <div className="bg-white dark:bg-gray-900 p-6 rounded-xl w-full max-w-sm">
             <h3 className="text-xl font-bold mb-4">Report Lesson</h3>
+
             {[
               "Inappropriate Content",
               "Hate Speech",
@@ -248,7 +260,7 @@ const LessonDetails = () => {
               <button
                 key={reason}
                 onClick={() => handleReport(reason)}
-                className="block w-full text-left p-2 hover:bg-gray-200 dark:hover:bg-gray-800"
+                className="block w-full text-left p-2 hover:bg-gray-200 dark:hover:bg-gray-800 rounded"
               >
                 {reason}
               </button>

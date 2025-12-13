@@ -7,10 +7,12 @@ import avatarImg from "../../../assets/images/placeholder.jpg";
 import logo from "../../../assets/images/logo.png";
 import useRole from "../../../hooks/useRole";
 import { FiLoader } from "react-icons/fi";
+import LoadingSpinner from "../LoadingSpinner";
 const Navbar = () => {
   const { user, logOut, loading } = useAuth();
-  const { isPremium } = useRole();
+  const { isPremium, role, roleLoading } = useRole();
   const [isOpen, setIsOpen] = useState(false);
+  if (roleLoading) return <LoadingSpinner />;
   const links = (
     <>
       <NavLink
@@ -132,7 +134,13 @@ const Navbar = () => {
                           Profile
                         </NavLink>
                         <NavLink
-                          to="/dashboard"
+                          to={`${
+                            roleLoading
+                              ? "Loading.."
+                              : role === "admin"
+                              ? "/dashboard/admin"
+                              : "/dashboard"
+                          }`}
                           className="px-4 py-3 hover:bg-neutral-100 transition font-semibold"
                         >
                           Dashboard

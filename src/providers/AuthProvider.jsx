@@ -11,6 +11,7 @@ import {
 } from "firebase/auth";
 import { app } from "../firebase/firebase.config";
 import { AuthContext } from "./AuthContext";
+import LoadingSpinner from "../components/Shared/LoadingSpinner";
 
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
@@ -56,6 +57,9 @@ const AuthProvider = ({ children }) => {
       return unsubscribe();
     };
   }, []);
+  if (loading) {
+    return <LoadingSpinner />;
+  }
 
   const authInfo = {
     user,

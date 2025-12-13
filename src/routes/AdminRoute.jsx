@@ -3,8 +3,9 @@ import useRole from "../hooks/useRole";
 import UnauthorizedPage from "../components/Unauthorized/UnauthorizedPage";
 
 const AdminRoute = ({ children }) => {
-  const { role, isLoading } = useRole();
-  if (isLoading) {
+  const { role, roleLoading } = useRole();
+
+  if (roleLoading && !role) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <Loader />

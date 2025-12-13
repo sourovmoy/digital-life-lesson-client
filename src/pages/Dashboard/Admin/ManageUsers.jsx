@@ -1,4 +1,23 @@
+import { useQuery } from "@tanstack/react-query";
+import UserDataRow from "../../../components/TableRow/UserTableRow";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
+
 const ManageUsers = () => {
+  const axios = useAxiosSecure();
+  const {
+    data: users = [],
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["users"],
+    queryFn: async () => {
+      const res = await axios.get(`/users`);
+      return res.data.result;
+    },
+  });
+  if (isLoading) return <LoadingSpinner />;
+
   return (
     <>
       <div className="container mx-auto px-4 sm:px-8">
@@ -8,6 +27,12 @@ const ManageUsers = () => {
               <table className="min-w-full leading-normal">
                 <thead>
                   <tr>
+                    <th
+                      scope="col"
+                      className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
+                    >
+                      Image
+                    </th>
                     <th
                       scope="col"
                       className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
@@ -35,7 +60,21 @@ const ManageUsers = () => {
                     </th>
                   </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody>
+                  {users ? (
+                    users.map((user) => (
+                      <UserDataRow
+                        key={user._id}
+                        user={user}
+                        refetch={refetch}
+                      />
+                    ))
+                  ) : (
+                    <p className="font-semibold text-2xl text-center">
+                      No users is available
+                    </p>
+                  )}
+                </tbody>
               </table>
             </div>
           </div>

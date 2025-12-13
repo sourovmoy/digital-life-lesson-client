@@ -3,7 +3,7 @@ import useRole from "../../hooks/useRole";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import {Link } from "react-router";
+import { Link } from "react-router";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import UpdateLessonForm from "./UpdateLessonForm";
@@ -46,7 +46,8 @@ const MyLessons = () => {
   };
 
   const update = async (id, update) => {
-    const res = await axios.patch(`/lessons/${id}`, update);
+    const updateData = { ...update, updatedAt: new Date() };
+    const res = await axios.patch(`/lessons/${id}`, updateData);
     refetch();
     return res.data.result;
   };
@@ -149,6 +150,12 @@ const MyLessons = () => {
               <td className="p-3 text-sm flex flex-col gap-1">
                 <span>
                   Created: {new Date(lesson.createdAt).toLocaleDateString()}
+                </span>
+                <span>
+                  Created:{" "}
+                  {lesson.updatedAt
+                    ? new Date(lesson.updatedAt).toLocaleDateString()
+                    : "Not updated yet"}
                 </span>
                 <span>Like Count: {lesson.likes.length || 0}</span>
                 <span>Save: {lesson.favorites.length || 0}</span>

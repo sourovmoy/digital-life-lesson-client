@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import useRole from "../../hooks/useRole";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+// import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 const AddLesson = () => {
+  const [showSuccess, setShowSuccess] = useState(false);
   const { isPremium } = useRole();
   const axios = useAxiosSecure();
   const { user } = useAuth();
@@ -37,6 +39,7 @@ const AddLesson = () => {
       likes: [],
       favorites: [],
       comments: [],
+      reports: [],
       creator: {
         name: user?.displayName,
         email: user?.email,
@@ -47,6 +50,12 @@ const AddLesson = () => {
       if (res.data.result.acknowledged) {
         toast.success("Lesson Created");
         reset();
+        setShowSuccess(true);
+
+        // Hide animation after 3 seconds
+        setTimeout(() => {
+          setShowSuccess(false);
+        }, 3000);
       }
     });
   };
@@ -55,6 +64,9 @@ const AddLesson = () => {
       <h2 className="text-3xl font-bold text-center mb-6">
         Create a New Lesson
       </h2>
+      {/* {showSuccess && (
+        <DotLottieReact src="path/to/animation.lottie" loop autoplay />
+      )} */}
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
         {/* TITLE */}

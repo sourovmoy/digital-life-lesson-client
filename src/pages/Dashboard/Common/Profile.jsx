@@ -26,10 +26,16 @@ const Profile = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      displayName: user?.displayName,
+      photoURL: user?.photoURL,
+    },
+  });
 
   const onSubmit = async (data) => {
     setLoading(true);
+
     const image = data.photo[0];
     const formData = new FormData();
     formData.append("image", image);
@@ -45,6 +51,7 @@ const Profile = () => {
       };
 
       axiosSecure.patch("/users", userData).then(() => {});
+      setLoading(false);
 
       updateUserProfile(data.displayName, photoURL).then(() => {
         modalRef.current.close();
@@ -55,7 +62,6 @@ const Profile = () => {
           displayName: data.displayName,
           photoURL: photoURL,
         });
-        setLoading(false);
       });
     });
   };
@@ -68,7 +74,7 @@ const Profile = () => {
     },
   });
 
-  if (isLoading || loading || ld) return <LoadingSpinner />;
+  if (isLoading || ld) return <LoadingSpinner />;
 
   return (
     <div>

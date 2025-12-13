@@ -5,13 +5,16 @@ import useAuth from "../../hooks/useAuth";
 import { FcGoogle } from "react-icons/fc";
 import { TbFidgetSpinner } from "react-icons/tb";
 import { useForm } from "react-hook-form";
+import useRole from "../../hooks/useRole";
 
 const Login = () => {
   const { signIn, signInWithGoogle, loading, user, setLoading } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const { role, roleLoading } = useRole();
 
-  const from = location.state || "/dashboard";
+  const from =
+    location.state || role === "admin" ? "/dashboard/admin" : "/dashboard";
 
   // hook form config
   const {
@@ -20,7 +23,7 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  if (loading) return <LoadingSpinner />;
+  if (loading || roleLoading) return <LoadingSpinner />;
   if (user) return <Navigate to={from} replace={true} />;
 
   // Hook Form Submit Handler
