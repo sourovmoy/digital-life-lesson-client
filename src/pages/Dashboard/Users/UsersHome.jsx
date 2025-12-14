@@ -7,6 +7,7 @@ import useAuth from "../../../hooks/useAuth";
 import RecentlyAdd from "./RecentlyAdd";
 import { Link, Navigate } from "react-router";
 import useRole from "../../../hooks/useRole";
+import UserCharts from "../../../components/Charts/UserCharts";
 
 const UsersHome = () => {
   const axios = useAxiosSecure();
@@ -19,6 +20,7 @@ const UsersHome = () => {
       return res.data.result;
     },
   });
+  console.log(totalCreated);
 
   if (isLoading || loading || roleLoading) return <LoadingSpinner />;
   if (role === "admin") return <Navigate to={"/dashboard/admin"}></Navigate>;
@@ -29,6 +31,10 @@ const UsersHome = () => {
 
       {/* Stats */}
       <UserStars totalCreated={totalCreated} />
+
+      <div className="p-6 min-h-screen">
+        <UserCharts />
+      </div>
 
       {/* Recently Added Lessons */}
       <RecentlyAdd totalCreated={totalCreated} />

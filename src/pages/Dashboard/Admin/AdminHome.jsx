@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
+import AdminCharts from "../../../components/Charts/AdminCharts";
 
 const AdminHome = () => {
   const axios = useAxiosSecure();
@@ -46,6 +47,9 @@ const AdminHome = () => {
             title="Top Contributors"
             value={stats.mostActiveContributors.length}
           />
+        </div>
+        <div>
+          <AdminCharts stats={stats} />
         </div>
 
         <div className="mt-8">
