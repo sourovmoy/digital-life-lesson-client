@@ -4,7 +4,8 @@ import useRole from "../../hooks/useRole";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
-// import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import Lottie from "lottie-react";
+import success from "../../assets/successfully.json";
 
 const AddLesson = () => {
   const [showSuccess, setShowSuccess] = useState(false);
@@ -35,7 +36,6 @@ const AddLesson = () => {
       visibility,
       accessLevel,
       createdAt: new Date(),
-      updatedAt: "",
       likes: [],
       favorites: [],
       comments: [],
@@ -59,14 +59,17 @@ const AddLesson = () => {
       }
     });
   };
+
   return (
     <div className="shadow-md p-6 rounded-xl">
       <h2 className="text-3xl font-bold text-center mb-6">
         Create a New Lesson
       </h2>
-      {/* {showSuccess && (
-        <DotLottieReact src="path/to/animation.lottie" loop autoplay />
-      )} */}
+      {showSuccess && (
+        <div className="absolute inset-0 bg-white/90 flex items-center justify-center rounded-xl z-50">
+          <Lottie animationData={success} loop={false} className="w-64" />
+        </div>
+      )}
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
         {/* TITLE */}

@@ -17,7 +17,7 @@ const UserDataRow = ({ user, refetch }) => {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Yes",
     }).then((result) => {
       if (result.isConfirmed) {
         axios.patch(`/user/${user?._id}`, update).then((res) => {

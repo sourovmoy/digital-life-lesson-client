@@ -4,6 +4,7 @@ import UnauthorizedPage from "../components/Unauthorized/UnauthorizedPage";
 
 const AdminRoute = ({ children }) => {
   const { role, roleLoading } = useRole();
+  console.log(role);
 
   if (roleLoading && !role) {
     return (

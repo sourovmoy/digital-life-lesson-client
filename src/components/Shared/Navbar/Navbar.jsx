@@ -12,6 +12,7 @@ const Navbar = () => {
   const { user, logOut, loading } = useAuth();
   const { isPremium, role, roleLoading } = useRole();
   const [isOpen, setIsOpen] = useState(false);
+
   if (roleLoading) return <LoadingSpinner />;
   const links = (
     <>
@@ -133,18 +134,21 @@ const Navbar = () => {
                         >
                           Profile
                         </NavLink>
-                        <NavLink
-                          to={`${
-                            roleLoading
-                              ? "Loading.."
-                              : role === "admin"
-                              ? "/dashboard/admin"
-                              : "/dashboard"
-                          }`}
-                          className="px-4 py-3 hover:bg-neutral-100 transition font-semibold"
-                        >
-                          Dashboard
-                        </NavLink>
+                        {roleLoading ? (
+                          "loading..."
+                        ) : (
+                          <NavLink
+                            to={`${
+                              role === "admin"
+                                ? "/dashboard/admin"
+                                : "/dashboard"
+                            }`}
+                            className="px-4 py-3 hover:bg-neutral-100 transition font-semibold"
+                          >
+                            Dashboard
+                          </NavLink>
+                        )}
+
                         <div
                           onClick={logOut}
                           className="px-4 py-3 hover:bg-neutral-100 transition font-semibold cursor-pointer"

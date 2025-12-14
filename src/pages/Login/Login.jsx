@@ -13,9 +13,6 @@ const Login = () => {
   const location = useLocation();
   const { role, roleLoading } = useRole();
 
-  const from =
-    location.state || role === "admin" ? "/dashboard/admin" : "/dashboard";
-
   // hook form config
   const {
     register,
@@ -24,6 +21,8 @@ const Login = () => {
   } = useForm();
 
   if (loading || roleLoading) return <LoadingSpinner />;
+  const from =
+    location.state || role === "admin" ? "/dashboard/admin" : "/dashboard";
   if (user) return <Navigate to={from} replace={true} />;
 
   // Hook Form Submit Handler

@@ -5,10 +5,12 @@ import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 import UserStars from "../../../components/Dashboard/Sidebar/Menu/UsersMenu/UserHome/UserStars";
 import useAuth from "../../../hooks/useAuth";
 import RecentlyAdd from "./RecentlyAdd";
-import { Link } from "react-router";
+import { Link, Navigate } from "react-router";
+import useRole from "../../../hooks/useRole";
 
 const UsersHome = () => {
   const axios = useAxiosSecure();
+  const { role, roleLoading } = useRole();
   const { user, loading } = useAuth();
   const { data: totalCreated = [], isLoading } = useQuery({
     queryKey: ["dashboardHome", user?.email],
@@ -18,7 +20,8 @@ const UsersHome = () => {
     },
   });
 
-  if (isLoading || loading) return <LoadingSpinner />;
+  if (isLoading || loading || roleLoading) return <LoadingSpinner />;
+  if (role === "admin") return <Navigate to={"/dashboard/admin"}></Navigate>;
 
   return (
     <div className="p-6 space-y-6">

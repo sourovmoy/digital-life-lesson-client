@@ -1,16 +1,55 @@
-# React + Vite
+# 🌱 Digital Life Lessons
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🔗 **Live Website:** https://your-live-site-url.com
 
-Currently, two official plugins are available:
+Digital Life Lessons is a reflective platform where users can create, save, and share meaningful life lessons, personal insights, and wisdom gained through real-life experiences. The goal is to help people preserve valuable lessons, grow mindfully, and learn from others.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## ✨ Key Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 📝 **Create & Share Life Lessons**  
+  Users can write detailed life lessons with categories, emotional tones, images, and privacy settings.
 
-## Expanding the ESLint configuration
+- 🔐 **Authentication & Role-Based Access**  
+  Secure login system with Free, Premium, and Admin roles using JWT authentication.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- ⭐ **Favorites & Likes System**  
+  Users can like lessons and save their favorite lessons for quick access.
+
+- 🛡️ **Admin Moderation Dashboard**  
+  Admins can manage all lessons, delete inappropriate content, feature lessons, review reports, and filter lessons by category or visibility.
+
+- 🚩 **Report & Review System**  
+  Users can report inappropriate lessons, and admins can review and mark reports to keep the platform clean.
+
+- 💎 **Premium Content Control**  
+  Premium lessons are accessible only to premium users, encouraging high-quality paid content.
+
+- 📱 **Fully Responsive Design**  
+  Optimized for mobile, tablet, and desktop devices using Tailwind CSS.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend:** React, Tailwind CSS, React Hook Form, TanStack Query
+- **Backend:** Node.js, Express.js, MongoDB
+- **Authentication:** Firebase Auth + JWT
+- **Image Hosting:** ImgBB
+- **UI Components:** DaisyUI
+
+---
+
+## 📌 Purpose of the Project
+
+People often learn powerful life lessons but forget them over time.  
+Digital Life Lessons helps preserve personal wisdom, encourages reflection, and allows users to grow by learning from others' experiences.
+
+---
+
+## 📬 Contact
+
+If you have any suggestions or feedback, feel free to reach out.
+
+Happy Learning 🌟
