@@ -15,7 +15,8 @@ const PublicLessons = () => {
 
   const [filters, setFilters] = useState({
     category: "",
-    visibility: "",
+    emotionalTone: "",
+    visibility: "public",
     search: "",
   });
 
@@ -96,14 +97,18 @@ const PublicLessons = () => {
             onChange={(e) => {
               setFilters((prev) => ({
                 ...prev,
-                visibility: e.target.value,
+                emotionalTone: e.target.value,
               }));
               setPage(1);
             }}
           >
-            <option value="">All Visibility</option>
-            <option value="public">Public</option>
-            <option value="private">Private</option>
+            <option value="">All Tone</option>
+            <option value="Thoughtful">Thoughtful</option>
+            <option value="Motivational">Motivational</option>
+            <option value="Empowering">Empowering</option>
+            <option value="Peaceful">Peaceful</option>
+            <option value="Warm">Warm</option>
+            <option value="Encouraging">Encouraging</option>
           </select>
         </div>
 
