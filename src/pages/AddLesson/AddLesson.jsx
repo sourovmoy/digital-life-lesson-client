@@ -6,10 +6,11 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import Lottie from "lottie-react";
 import success from "../../assets/successfully.json";
+import LoadingSpinner from "../../components/Shared/LoadingSpinner";
 
 const AddLesson = () => {
   const [showSuccess, setShowSuccess] = useState(false);
-  const { isPremium } = useRole();
+  const { isPremium, roleLoading } = useRole();
   const axios = useAxiosSecure();
   const { user } = useAuth();
 
@@ -59,7 +60,7 @@ const AddLesson = () => {
       }
     });
   };
-
+  if (roleLoading) return <LoadingSpinner />;
   return (
     <div className="shadow-md p-6 rounded-xl">
       <h2 className="text-3xl font-bold text-center mb-6">

@@ -3,9 +3,10 @@ import toast from "react-hot-toast";
 import { FaLock, FaStar, FaUserCircle } from "react-icons/fa";
 import { useNavigate } from "react-router";
 import useRole from "../../hooks/useRole";
+import LoadingSpinner from "../Shared/LoadingSpinner";
 
 const LessonCard = ({ lesson }) => {
-  const { isPremium } = useRole();
+  const { isPremium, roleLoading } = useRole();
   const navigate = useNavigate(null);
   const isLocked = lesson.accessLevel === "premium" && !isPremium;
   const handelLesson = () => {
@@ -16,6 +17,7 @@ const LessonCard = ({ lesson }) => {
       navigate(`/lessons/${lesson._id}`);
     }
   };
+  if (roleLoading) return <LoadingSpinner />;
   return (
     <div className="relative">
       {/* Card */}

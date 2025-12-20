@@ -20,7 +20,6 @@ const UsersHome = () => {
       return res.data.result;
     },
   });
-  console.log(totalCreated);
 
   if (isLoading || loading || roleLoading) return <LoadingSpinner />;
   if (role === "admin") return <Navigate to={"/dashboard/admin"}></Navigate>;
