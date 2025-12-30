@@ -1,6 +1,6 @@
 # 🌱 Digital Life Lessons
 
-🔗 **Live Website:** https://your-live-site-url.com
+🔗 **Live Website:** https://digital-life-lessons-to-learn.netlify.app
 
 Digital Life Lessons is a reflective platform where users can create, save, and share meaningful life lessons, personal insights, and wisdom gained through real-life experiences. The goal is to help people preserve valuable lessons, grow mindfully, and learn from others.
 
