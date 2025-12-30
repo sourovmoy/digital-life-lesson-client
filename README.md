@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./digital-life-lessons-to-learn.netlify.app_.png" alt="GitHub Banner" />
+</p>
+
 # 🌱 Digital Life Lessons
 
 🔗 **Live Website:** https://your-live-site-url.com
