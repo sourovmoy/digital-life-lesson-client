@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./digital-life-lessons-to-learn.netlify.app_.png" alt="GitHub Banner" />
+  <img src="./public/digital-life-lessons-to-learn.netlify.app_.png" alt="GitHub Banner" />
 </p>
 
 # 🌱 Digital Life Lessons
