@@ -35,13 +35,13 @@ const ReportLessonTableRow = ({ report, refetch }) => {
   };
   return (
     <tr>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900 ">{report?.title}</p>
+      <td className="px-5 py-5 border-b border-base-300 bg-base-100 text-sm">
+        <p className="text-base-content">{report?.title}</p>
       </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900 ">{report?.reports?.length}</p>
+      <td className="px-5 py-5 border-b border-base-300 bg-base-100 text-sm">
+        <p className="text-base-content">{report?.reports?.length}</p>
       </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+      <td className="px-5 py-5 border-b border-base-300 bg-base-100 text-sm">
         <span
           onClick={() => setIsOpen(true)}
           className="relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight"

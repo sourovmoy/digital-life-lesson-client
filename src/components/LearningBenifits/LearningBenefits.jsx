@@ -37,7 +37,7 @@ const LearningBenefits = () => {
       <h3 className="text-2xl font-bold mb-4 text-center">
         Why Learning From Life Matters
       </h3>
-      <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+      <p className="text-center text-base-content/70 mb-12 max-w-2xl mx-auto">
         Life lessons are everywhere. Discover, reflect, and grow with insights
         shared by our community of lifelong learners.
       </p>
@@ -45,13 +45,13 @@ const LearningBenefits = () => {
         {benefits.map((benefit, index) => (
           <div
             key={index}
-            className="benefit-card p-8 bg-white rounded-xl shadow-lg text-center transition-transform transform hover:-translate-y-3 hover:shadow-2xl duration-300"
+            className="benefit-card p-8 bg-base-200 rounded-xl shadow-lg text-center transition-transform transform hover:-translate-y-3 hover:shadow-2xl hover:bg-secondary/10 duration-300 border border-base-300"
           >
             {benefit.icon}
-            <h4 className="font-bold text-xl mb-3 text-gray-800">
+            <h4 className="font-bold text-xl mb-3 text-base-content">
               {benefit.title}
             </h4>
-            <p className="text-gray-600">{benefit.description}</p>
+            <p className="text-base-content/70">{benefit.description}</p>
           </div>
         ))}
       </div>

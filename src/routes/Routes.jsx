@@ -23,6 +23,10 @@ import ManageLessons from "../pages/Dashboard/Admin/ManageLessons";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
 import AdminProfile from "../pages/Dashboard/Admin/AdminProfile";
 import ReportedLessons from "../pages/Dashboard/Admin/ReportedLessons";
+import About from "../pages/About/About";
+import Contact from "../pages/Contact/Contact";
+import Terms from "../pages/Terms/Terms";
+import Privacy from "../pages/Privacy/Privacy";
 
 export const router = createBrowserRouter([
   {
@@ -39,11 +43,25 @@ export const router = createBrowserRouter([
         Component: PublicLessons,
       },
       {
+        path: "/about",
+        Component: About,
+      },
+      {
+        path: "/contact",
+        Component: Contact,
+      },
+      {
+        path: "/terms",
+        Component: Terms,
+      },
+      {
+        path: "/privacy",
+        Component: Privacy,
+      },
+      {
         path: "/lessons/:id",
         element: (
-          <PrivateRoute>
             <LessonDetails />
-          </PrivateRoute>
         ),
       },
       {
@@ -77,7 +95,6 @@ export const router = createBrowserRouter([
       { path: "/signup", element: <SignUp /> },
     ],
   },
-
   {
     path: "/dashboard",
     errorElement: <ErrorPage />,

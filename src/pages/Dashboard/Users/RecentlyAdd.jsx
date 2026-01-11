@@ -17,13 +17,13 @@ const RecentlyAdd = ({ totalCreated: recentLessons }) => {
             <Link
               to={`/lessons/${lesson._id}`}
               key={lesson._id}
-              className="p-4 bg-white rounded-lg shadow"
+              className="p-4 bg-base-100 rounded-lg shadow border border-base-300"
             >
               <h3 className="font-bold">{lesson.title}</h3>
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-base-content/70">
                 {lesson.description.slice(0, 60)}...
               </p>
-              <span className="text-xs text-gray-400">
+              <span className="text-xs text-base-content/50">
                 {new Date(lesson.createdAt).toLocaleDateString()}
               </span>
             </Link>

@@ -19,7 +19,7 @@ const UserRoleModal = ({ isOpen, closeModal, role, onUpdateRole }) => {
           <div className="flex min-h-full items-center justify-center p-4">
             <DialogPanel
               transition
-              className="w-full max-w-md rounded-xl bg-white/5 p-6 backdrop-blur-2xl duration-300 ease-out data-closed:transform-[scale(95%)] data-closed:opacity-0 shadow-xl"
+              className="w-full max-w-md rounded-xl bg-base-100/95 p-6 backdrop-blur-2xl duration-300 ease-out data-closed:transform-[scale(95%)] data-closed:opacity-0 shadow-xl border border-base-300"
             >
               <DialogTitle
                 as="h3"

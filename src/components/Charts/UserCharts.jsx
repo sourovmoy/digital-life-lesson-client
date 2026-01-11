@@ -13,10 +13,13 @@ import { useQuery } from "@tanstack/react-query";
 
 const UserCharts = () => {
   const axios = useAxios();
+  // Re-enable UserCharts component
   const { data = [], isLoading } = useQuery({
     queryKey: ["accessLevelAnalytics"],
     queryFn: async () => {
+      console.log("Making analytics API call");
       const res = await axios.get("/analytics/accessLevel");
+      console.log("Analytics API call successful:", res.data);
       return res.data;
     },
   });
@@ -25,8 +28,8 @@ const UserCharts = () => {
   if (!data || data.length === 0) return <div>No data</div>;
 
   return (
-    <div className="rounded-2xl shadow-md p-4 sm:p-6 w-full min-h-[400px]">
-      <h2 className="text-lg font-semibold text-gray-800 mb-4">
+    <div className="rounded-2xl shadow-md p-4 sm:p-6 w-full min-h-[400px] bg-base-100 border border-base-300">
+      <h2 className="text-lg font-semibold text-base-content mb-4">
         🎯 Lessons by Access Level (Last 7 Days)
       </h2>
       <div style={{ width: "100%", height: 400 }}>

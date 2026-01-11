@@ -13,9 +13,9 @@ const AdminCharts = ({ stats }) => {
   const { mostActiveContributors = [] } = stats || {};
 
   return (
-    <div className="w-full bg-white rounded-2xl shadow-md p-4 sm:p-6">
+    <div className="w-full bg-base-100 rounded-2xl shadow-md p-4 sm:p-6 border border-base-300">
       {/* Title */}
-      <h2 className="text-lg sm:text-xl font-semibold text-gray-800 mb-4">
+      <h2 className="text-lg sm:text-xl font-semibold text-base-content mb-4">
         📈 Most Active Contributors
       </h2>
 

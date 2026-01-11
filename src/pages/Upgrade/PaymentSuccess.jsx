@@ -15,43 +15,43 @@ const PaymentSuccess = () => {
   }, [axios, sessionId]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 via-white to-green-100 p-6">
-      <div className="bg-white shadow-xl rounded-3xl p-10 max-w-lg mx-auto text-center border">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-success/10 via-base-100 to-success/20 p-6">
+      <div className="bg-base-100 shadow-xl rounded-3xl p-10 max-w-lg mx-auto text-center border border-base-300">
         {/* Success Icon */}
         <div className="flex justify-center">
           <FiCheckCircle
-            className="text-green-600 w-20 h-20 drop-shadow-md animate-[pop_0.4s_ease-out]"
+            className="text-success w-20 h-20 drop-shadow-md animate-[pop_0.4s_ease-out]"
             strokeWidth={2.5}
           />
         </div>
 
         {/* Title */}
-        <h1 className="text-4xl font-bold text-gray-800 mt-6">
+        <h1 className="text-4xl font-bold text-base-content mt-6">
           Payment Successful!
         </h1>
 
         {/* Subtitle */}
-        <p className="text-gray-600 mt-3 text-lg leading-relaxed">
+        <p className="text-base-content/70 mt-3 text-lg leading-relaxed">
           Your payment has been verified. You are now upgraded to the{" "}
-          <span className="font-semibold text-green-700">Premium Plan</span>.
+          <span className="font-semibold text-success">Premium Plan</span>.
           Enjoy unlimited access to all features!
         </p>
 
         {/* Divider */}
-        <div className="h-[1px] bg-gray-200 w-full my-8"></div>
+        <div className="h-[1px] bg-base-300 w-full my-8"></div>
 
         {/* Button */}
         <Link
           to="/dashboard"
-          className="block bg-green-600 hover:bg-green-700 transition-all text-white font-medium py-3 rounded-xl shadow-md"
+          className="block bg-primary hover:bg-secondary transition-all text-primary-content font-medium py-3 rounded-xl shadow-md"
         >
           Go to Dashboard
         </Link>
 
         {/* Extra Note */}
-        <p className="text-sm text-gray-500 mt-4">
+        <p className="text-sm text-base-content/70 mt-4">
           Need help?{" "}
-          <Link className="text-green-600 font-medium">Contact Support</Link>
+          <Link className="text-primary font-medium">Contact Support</Link>
         </p>
       </div>
     </div>

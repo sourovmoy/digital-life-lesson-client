@@ -19,3 +19,481 @@ a.active {
     opacity: 1;
   }
 }
+
+/* Custom Toast Styling to match website primary colors */
+.react-hot-toast {
+  font-family: inherit;
+}
+
+/* Success Toast - Primary Color */
+.react-hot-toast div[data-type="success"] {
+  background: #BC6C25 !important;
+  color: white !important;
+  border: 2px solid #DDA15E !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 25px rgba(188, 108, 37, 0.3) !important;
+  font-weight: 600 !important;
+}
+
+.react-hot-toast div[data-type="success"] svg {
+  color: white !important;
+}
+
+/* Error Toast - Error Color with Primary Accent */
+.react-hot-toast div[data-type="error"] {
+  background: #ef4444 !important;
+  color: white !important;
+  border: 2px solid #BC6C25 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 25px rgba(239, 68, 68, 0.3) !important;
+  font-weight: 600 !important;
+}
+
+.react-hot-toast div[data-type="error"] svg {
+  color: white !important;
+}
+
+/* Loading Toast - Secondary Color */
+.react-hot-toast div[data-type="loading"] {
+  background: #DDA15E !important;
+  color: #283618 !important;
+  border: 2px solid #BC6C25 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 25px rgba(221, 161, 94, 0.3) !important;
+  font-weight: 600 !important;
+}
+
+.react-hot-toast div[data-type="loading"] svg {
+  color: #283618 !important;
+}
+
+/* Custom Toast - Primary Gradient */
+.react-hot-toast div[data-type="custom"] {
+  background: linear-gradient(135deg, #BC6C25 0%, #DDA15E 100%) !important;
+  color: white !important;
+  border: 2px solid #606C38 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 25px rgba(188, 108, 37, 0.4) !important;
+  font-weight: 600 !important;
+}
+
+/* Dark theme adjustments */
+[data-theme="night"] .react-hot-toast div[data-type="success"] {
+  background: #BC6C25 !important;
+  border-color: #DDA15E !important;
+  box-shadow: 0 10px 25px rgba(188, 108, 37, 0.5) !important;
+}
+
+[data-theme="night"] .react-hot-toast div[data-type="error"] {
+  background: #dc2626 !important;
+  border-color: #BC6C25 !important;
+  box-shadow: 0 10px 25px rgba(220, 38, 38, 0.5) !important;
+}
+
+[data-theme="night"] .react-hot-toast div[data-type="loading"] {
+  background: #DDA15E !important;
+  color: #1f2937 !important;
+  border-color: #BC6C25 !important;
+}
+
+/* Toast container positioning */
+.react-hot-toast-container {
+  z-index: 9999 !important;
+}
+
+/* Toast animation enhancement */
+.react-hot-toast div {
+  animation: slideInRight 0.3s ease-out !important;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* ===== BEAUTIFUL CUSTOM BUTTONS ===== */
+
+/* Primary Button - Main Brand Color */
+.btn-custom-primary {
+  background: linear-gradient(135deg, #BC6C25 0%, #DDA15E 100%);
+  border: 2px solid transparent;
+  color: white;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(188, 108, 37, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-custom-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-custom-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(188, 108, 37, 0.4);
+  background: linear-gradient(135deg, #A85A1F 0%, #C8954F 100%);
+}
+
+.btn-custom-primary:hover::before {
+  left: 100%;
+}
+
+.btn-custom-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 15px rgba(188, 108, 37, 0.3);
+}
+
+/* Secondary Button - Secondary Brand Color */
+.btn-custom-secondary {
+  background: linear-gradient(135deg, #DDA15E 0%, #FEFAE0 100%);
+  border: 2px solid #BC6C25;
+  color: #283618;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(221, 161, 94, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-custom-secondary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(188, 108, 37, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.btn-custom-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(221, 161, 94, 0.4);
+  background: linear-gradient(135deg, #C8954F 0%, #F5F1DC 100%);
+  border-color: #A85A1F;
+}
+
+.btn-custom-secondary:hover::before {
+  left: 100%;
+}
+
+.btn-custom-secondary:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 15px rgba(221, 161, 94, 0.3);
+}
+
+/* Success Button - Green with Brand Accent */
+.btn-custom-success {
+  background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+  border: 2px solid #BC6C25;
+  color: white;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-custom-success::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-custom-success:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+  background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+}
+
+.btn-custom-success:hover::before {
+  left: 100%;
+}
+
+/* Error/Danger Button - Red with Brand Accent */
+.btn-custom-error {
+  background: linear-gradient(135deg, #ef4444 0%, #f87171 100%);
+  border: 2px solid #BC6C25;
+  color: white;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-custom-error::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-custom-error:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(239, 68, 68, 0.4);
+  background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+}
+
+.btn-custom-error:hover::before {
+  left: 100%;
+}
+
+/* Warning Button - Yellow with Brand Accent */
+.btn-custom-warning {
+  background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+  border: 2px solid #BC6C25;
+  color: #283618;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-custom-warning::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(40, 54, 24, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.btn-custom-warning:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+  background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
+}
+
+.btn-custom-warning:hover::before {
+  left: 100%;
+}
+
+/* Outline Button - Transparent with Brand Border */
+.btn-custom-outline {
+  background: transparent;
+  border: 2px solid #BC6C25;
+  color: #BC6C25;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(188, 108, 37, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-custom-outline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(135deg, #BC6C25 0%, #DDA15E 100%);
+  transition: width 0.3s ease;
+  z-index: -1;
+}
+
+.btn-custom-outline:hover {
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(188, 108, 37, 0.3);
+}
+
+.btn-custom-outline:hover::before {
+  width: 100%;
+}
+
+/* Ghost Button - Minimal with Hover Effect */
+.btn-custom-ghost {
+  background: transparent;
+  border: 2px solid transparent;
+  color: #BC6C25;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.btn-custom-ghost:hover {
+  background: rgba(188, 108, 37, 0.1);
+  border-color: #BC6C25;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(188, 108, 37, 0.2);
+}
+
+/* Gradient Button - Special Premium Look */
+.btn-custom-gradient {
+  background: linear-gradient(135deg, #BC6C25 0%, #DDA15E 50%, #606C38 100%);
+  border: 2px solid transparent;
+  color: white;
+  font-weight: 700;
+  padding: 14px 28px;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(188, 108, 37, 0.4);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.btn-custom-gradient:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(188, 108, 37, 0.5);
+  animation-duration: 1s;
+}
+
+/* Small Button Variants */
+.btn-custom-sm {
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 8px;
+}
+
+/* Large Button Variants */
+.btn-custom-lg {
+  padding: 16px 32px;
+  font-size: 18px;
+  border-radius: 16px;
+}
+
+/* Extra Large Button Variants */
+.btn-custom-xl {
+  padding: 20px 40px;
+  font-size: 20px;
+  border-radius: 20px;
+}
+
+/* Disabled State for All Custom Buttons */
+.btn-custom-primary:disabled,
+.btn-custom-secondary:disabled,
+.btn-custom-success:disabled,
+.btn-custom-error:disabled,
+.btn-custom-warning:disabled,
+.btn-custom-outline:disabled,
+.btn-custom-ghost:disabled,
+.btn-custom-gradient:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.btn-custom-primary:disabled:hover,
+.btn-custom-secondary:disabled:hover,
+.btn-custom-success:disabled:hover,
+.btn-custom-error:disabled:hover,
+.btn-custom-warning:disabled:hover,
+.btn-custom-outline:disabled:hover,
+.btn-custom-ghost:disabled:hover,
+.btn-custom-gradient:disabled:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Dark Theme Adjustments for Custom Buttons */
+[data-theme="night"] .btn-custom-secondary {
+  background: linear-gradient(135deg, #DDA15E 0%, #BC6C25 100%);
+  color: white;
+}
+
+[data-theme="night"] .btn-custom-warning {
+  color: white;
+}
+
+[data-theme="night"] .btn-custom-outline {
+  color: #DDA15E;
+  border-color: #DDA15E;
+}
+
+[data-theme="night"] .btn-custom-ghost {
+  color: #DDA15E;
+}
+
+[data-theme="night"] .btn-custom-ghost:hover {
+  background: rgba(221, 161, 94, 0.1);
+  border-color: #DDA15E;
+}
+
+/* Button Group Styling */
+.btn-group-custom {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn-group-custom .btn-custom-primary:not(:last-child),
+.btn-group-custom .btn-custom-secondary:not(:last-child),
+.btn-group-custom .btn-custom-outline:not(:last-child) {
+  margin-right: 0;
+}
+
+/* Floating Action Button */
+.btn-custom-fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #BC6C25 0%, #DDA15E 100%);
+  border: none;
+  color: white;
+  font-size: 24px;
+  box-shadow: 0 8px 25px rgba(188, 108, 37, 0.4);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-custom-fab:hover {
+  transform: scale(1.1) translateY(-2px);
+  box-shadow: 0 12px 35px rgba(188, 108, 37, 0.5);
+}

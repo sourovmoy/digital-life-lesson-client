@@ -147,7 +147,7 @@ const UpdateLessonForm = ({ lesson, isPremium, onUpdate }) => {
           <input
             {...register("creatorName")}
             disabled
-            className="w-full p-2 border rounded mt-1 bg-gray-100 cursor-not-allowed"
+            className="w-full p-2 border border-base-300 rounded mt-1 bg-base-200 cursor-not-allowed text-base-content/70"
           />
         </div>
 
@@ -156,7 +156,7 @@ const UpdateLessonForm = ({ lesson, isPremium, onUpdate }) => {
           <input
             {...register("creatorEmail")}
             disabled
-            className="w-full p-2 border rounded mt-1 bg-gray-100 cursor-not-allowed"
+            className="w-full p-2 border border-base-300 rounded mt-1 bg-base-200 cursor-not-allowed text-base-content/70"
           />
         </div>
       </div>

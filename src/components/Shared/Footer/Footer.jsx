@@ -1,5 +1,3 @@
-import React from "react";
-
 import {
   FaFacebookF,
   FaTwitter,
@@ -13,10 +11,10 @@ import logo from "../../../assets/images/logo.png";
 const Footer = ({
   siteName = "Digital Life Lessons",
   contactEmail = "hello@digitallifelessons.example",
-  contactPhone = "+880 1234 567890",
+  contactPhone = "+880 1742 818496",
 }) => {
   return (
-    <footer className="bg-gray-900 text-gray-200">
+    <footer className="bg-neutral text-neutral-content border-t border-base-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Logo & short about */}
@@ -29,30 +27,27 @@ const Footer = ({
               />
               <span className="font-semibold text-lg">{siteName}</span>
             </div>
-            <p className="text-sm text-gray-400 leading-relaxed">
+            <p className="text-sm text-neutral-content/70 leading-relaxed">
               A place to store, reflect on, and share the life lessons and
               wisdom you gather. Organize lessons, mark favorites, and explore
               public lessons from the community.
             </p>
 
             <div className="flex items-center space-x-3 mt-3">
-              <a aria-label="Facebook" href="#" className="hover:text-white/90">
+              <a aria-label="Facebook" href="https://www.facebook.com/sourovmmoysanju/" className="hover:text-white/90">
                 <FaFacebookF />
-              </a>
-              <a aria-label="Twitter" href="#" className="hover:text-white/90">
-                <FaTwitter />
               </a>
               <a
                 aria-label="Instagram"
-                href="#"
+                href="https://www.instagram.com/sourovmoy/"
                 className="hover:text-white/90"
               >
                 <FaInstagram />
               </a>
-              <a aria-label="LinkedIn" href="#" className="hover:text-white/90">
+              <a aria-label="LinkedIn" href="https://www.linkedin.com/in/sourov-dash/" className="hover:text-white/90">
                 <FaLinkedinIn />
               </a>
-              <a aria-label="GitHub" href="#" className="hover:text-white/90">
+              <a aria-label="GitHub" href="https://github.com/sourovmoy" className="hover:text-white/90">
                 <FaGithub />
               </a>
             </div>
@@ -61,7 +56,7 @@ const Footer = ({
           {/* Links */}
           <div>
             <h4 className="font-semibold mb-3">Links</h4>
-            <ul className="space-y-2 text-sm text-gray-400">
+            <ul className="space-y-2 text-sm text-neutral-content/70">
               <li>
                 <Link to="/" className="hover:text-white">
                   Home
@@ -93,13 +88,13 @@ const Footer = ({
           {/* Contact */}
           <div>
             <h4 className="font-semibold mb-3">Contact</h4>
-            <p className="text-sm text-gray-400">
+            <p className="text-sm text-neutral-content/70">
               Email:{" "}
               <a href="" className="hover:text-white">
                 {contactEmail}
               </a>
             </p>
-            <p className="text-sm text-gray-400 mt-2">
+            <p className="text-sm text-neutral-content/70 mt-2">
               Phone:{" "}
               <a href="" className="hover:text-white">
                 {contactPhone}
@@ -108,7 +103,7 @@ const Footer = ({
 
             <div className="mt-4">
               <h4 className="font-semibold mb-2">Address</h4>
-              <p className="text-sm text-gray-400 leading-relaxed">
+              <p className="text-sm text-neutral-content/70 leading-relaxed">
                 Dhaka, Bangladesh
               </p>
             </div>
@@ -117,20 +112,20 @@ const Footer = ({
           {/* Legal & CTA */}
           <div>
             <h4 className="font-semibold mb-3">Legal & More</h4>
-            <ul className="space-y-2 text-sm text-gray-400">
+            <ul className="space-y-2 text-sm text-neutral-content/70">
               <li>
-                <Link className="hover:text-white">Terms &amp; Conditions</Link>
+                <Link to="/terms" className="hover:text-white">Terms &amp; Conditions</Link>
               </li>
               <li>
-                <Link className="hover:text-white">Privacy Policy</Link>
+                <Link to="/privacy" className="hover:text-white">Privacy Policy</Link>
               </li>
               <li>
-                <Link className="hover:text-white">Cookie Policy</Link>
+                <Link to="/contact" className="hover:text-white">Contact Us</Link>
               </li>
             </ul>
 
             <div className="mt-6">
-              <p className="text-sm text-gray-400 mb-3">
+              <p className="text-sm text-neutral-content/70 mb-3">
                 Want to stay updated?
               </p>
               <form
@@ -146,11 +141,11 @@ const Footer = ({
                   aria-label="Email for newsletter"
                   required
                   placeholder="Your email"
-                  className="w-full px-3 py-2 rounded-md bg-gray-800 text-gray-200 placeholder-gray-500 focus:outline-lime-500"
+                  className="w-full px-3 py-2 rounded-md bg-base-200 text-base-content placeholder-base-content/50 focus:outline-primary border border-base-300"
                 />
                 <button
                   type="submit"
-                  className="px-4 py-2 rounded-md bg-lime-500 text-white hover:bg-lime-600"
+                  className="px-4 py-2 rounded-md bg-primary text-primary-content hover:bg-secondary transition-colors"
                 >
                   Subscribe
                 </button>
@@ -160,17 +155,15 @@ const Footer = ({
         </div>
 
         {/* Bottom row */}
-        <div className="mt-10 border-t border-gray-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-sm text-gray-500">
+        <div className="mt-10 border-t border-base-300 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-sm text-neutral-content/70">
             © {new Date().getFullYear()} {siteName}. All rights reserved.
           </p>
 
-          <div className="text-sm text-gray-400 flex items-center gap-4">
-            <Link className="hover:text-white">Terms</Link>
-            <Link className="hover:text-white">Privacy</Link>
-            <a href="" className="hover:text-white">
-              Contact
-            </a>
+          <div className="text-sm text-neutral-content/70 flex items-center gap-4">
+            <Link to="/terms" className="hover:text-white">Terms</Link>
+            <Link to="/privacy" className="hover:text-white">Privacy</Link>
+            <Link to="/contact" className="hover:text-white">Contact</Link>
           </div>
         </div>
       </div>

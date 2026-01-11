@@ -66,17 +66,17 @@ const CommentsSection = ({ lessonId, comments, refetchLesson }) => {
       {/* Display comments */}
       <div className="space-y-4">
         {comments?.length === 0 && (
-          <p className="text-gray-500 text-2xl text-center">No comments yet.</p>
+          <p className="text-base-content/70 text-2xl text-center">No comments yet.</p>
         )}
         {comments?.map((c, idx) => (
           <div
             key={idx}
-            className="p-3 bg-gray-100 dark:bg-gray-800 rounded-lg"
+            className="p-3 bg-base-200 rounded-lg"
           >
-            <p className="text-sm text-gray-700 dark:text-gray-300">
+            <p className="text-sm text-base-content">
               <strong>{c.name}:</strong> {c.comment}
             </p>
-            <p className="text-xs text-gray-500 dark:text-gray-400">
+            <p className="text-xs text-base-content/70">
               {new Date(c.date).toLocaleString()}
             </p>
           </div>

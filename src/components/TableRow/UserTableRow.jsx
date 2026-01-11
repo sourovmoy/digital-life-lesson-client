@@ -35,26 +35,26 @@ const UserDataRow = ({ user, refetch }) => {
 
   return (
     <tr>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+      <td className="px-5 py-5 border-b border-base-300 bg-base-100 text-sm">
         <img
           className="h-15 w-15 rounded-2xl outline-3"
           src={user?.photoURL}
           alt={user?.displayName}
         />
       </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900 ">{user?.email}</p>
+      <td className="px-5 py-5 border-b border-base-300 bg-base-100 text-sm">
+        <p className="text-base-content">{user?.email}</p>
       </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900 ">{user?.role}</p>
+      <td className="px-5 py-5 border-b border-base-300 bg-base-100 text-sm">
+        <p className="text-base-content">{user?.role}</p>
       </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="">
+      <td className="px-5 py-5 border-b border-base-300 bg-base-100 text-sm">
+        <p className="text-base-content">
           {user?.isPremium === true ? "Premium" : "Not Premium"}
         </p>
       </td>
 
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+      <td className="px-5 py-5 border-b border-base-300 bg-base-100 text-sm">
         <span
           onClick={() => setIsOpen(true)}
           className="relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight"
