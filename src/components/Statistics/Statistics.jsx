@@ -85,8 +85,8 @@ const Statistics = () => {
   ], [stats]);
 
   return (
-    <section className="statistics-section py-16 bg-base-200">
-      <div className="container mx-auto px-4">
+    <section className="statistics-section py-12 sm:py-16 bg-base-200">
+      <div className="container mx-auto px-4 sm:px-6">
         <motion.div 
           className="text-center mb-12"
           initial={{ opacity: 0, y: 30 }}
@@ -103,7 +103,7 @@ const Statistics = () => {
         </motion.div>
         
         <motion.div 
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -119,20 +119,20 @@ const Statistics = () => {
                 transition: { duration: 0.3 }
               }}
               className={`
-                bg-base-100 rounded-xl p-6 text-center shadow-lg hover:shadow-xl 
+                bg-base-100 rounded-xl p-4 sm:p-6 text-center shadow-lg hover:shadow-xl 
                 transition-shadow border border-base-300 cursor-pointer
                 ${isLoading ? 'animate-pulse' : ''}
               `}
             >
               <motion.div 
-                className={`w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r ${stat.color} flex items-center justify-center text-2xl`}
+                className={`w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 rounded-full bg-gradient-to-r ${stat.color} flex items-center justify-center text-xl sm:text-2xl`}
                 whileHover={{ rotate: 360 }}
                 transition={{ duration: 0.6 }}
               >
                 {stat.icon}
               </motion.div>
               <motion.h3 
-                className="text-2xl md:text-3xl font-bold text-primary mb-2"
+                className="text-xl sm:text-2xl md:text-3xl font-bold text-primary mb-1 sm:mb-2"
                 initial={{ scale: 0 }}
                 whileInView={{ scale: 1 }}
                 viewport={{ once: true }}
@@ -140,7 +140,7 @@ const Statistics = () => {
               >
                 {stat.value}
               </motion.h3>
-              <p className="text-base-content/70 font-medium">
+              <p className="text-sm sm:text-base text-base-content/70 font-medium">
                 {stat.title}
               </p>
             </motion.div>

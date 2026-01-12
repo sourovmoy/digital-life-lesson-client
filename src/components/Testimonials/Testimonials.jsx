@@ -43,8 +43,8 @@ const Testimonials = () => {
   const currentTestimonial = testimonials[currentIndex];
 
   return (
-    <section className="testimonials-section py-16 bg-base-100">
-      <div className="container mx-auto px-4">
+    <section className="testimonials-section py-12 sm:py-16 bg-base-100">
+      <div className="container mx-auto px-4 sm:px-6">
         <motion.div 
           className="text-center mb-12"
           initial={{ opacity: 0, y: 30 }}
@@ -62,7 +62,7 @@ const Testimonials = () => {
 
         <div className="max-w-4xl mx-auto">
           <motion.div 
-            className="bg-base-200 rounded-2xl p-8 md:p-12 shadow-lg border border-base-300 relative"
+            className="bg-base-200 rounded-2xl p-6 sm:p-8 md:p-12 shadow-lg border border-base-300 relative"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -73,7 +73,7 @@ const Testimonials = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <FaQuoteLeft className="text-4xl text-primary/30 absolute top-6 left-6" />
+              <FaQuoteLeft className="text-2xl sm:text-3xl md:text-4xl text-primary/30 absolute top-4 sm:top-6 left-4 sm:left-6" />
             </motion.div>
             
             <AnimatePresence mode="wait">
@@ -88,14 +88,14 @@ const Testimonials = () => {
                 <motion.img
                   src={currentTestimonial.image}
                   alt={currentTestimonial.name}
-                  className="w-20 h-20 rounded-full mx-auto mb-6 border-4 border-primary/20"
+                  className="w-16 h-16 sm:w-20 sm:h-20 rounded-full mx-auto mb-4 sm:mb-6 border-4 border-primary/20"
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
                 />
                 
                 <motion.blockquote 
-                  className="text-lg md:text-xl text-base-content/80 mb-6 italic leading-relaxed"
+                  className="text-base sm:text-lg md:text-xl text-base-content/80 mb-4 sm:mb-6 italic leading-relaxed"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3, duration: 0.5 }}
@@ -127,10 +127,10 @@ const Testimonials = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6, duration: 0.5 }}
                 >
-                  <h4 className="text-xl font-semibold text-base-content">
+                  <h4 className="text-lg sm:text-xl font-semibold text-base-content">
                     {currentTestimonial.name}
                   </h4>
-                  <p className="text-base-content/70">
+                  <p className="text-sm sm:text-base text-base-content/70">
                     {currentTestimonial.role}
                   </p>
                 </motion.div>
@@ -139,7 +139,7 @@ const Testimonials = () => {
 
             {/* Navigation */}
             <motion.div 
-              className="flex justify-between items-center mt-8"
+              className="flex justify-between items-center mt-6 sm:mt-8"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -147,12 +147,12 @@ const Testimonials = () => {
             >
               <motion.button
                 onClick={prevTestimonial}
-                className="p-3 rounded-full bg-primary text-primary-content hover:bg-secondary transition-colors"
+                className="p-2 sm:p-3 rounded-full bg-primary text-primary-content hover:bg-secondary transition-colors"
                 aria-label="Previous testimonial"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >
-                <FaChevronLeft />
+                <FaChevronLeft className="text-sm sm:text-base" />
               </motion.button>
               
               <div className="flex space-x-2">
@@ -160,7 +160,7 @@ const Testimonials = () => {
                   <motion.button
                     key={index}
                     onClick={() => setCurrentIndex(index)}
-                    className={`w-3 h-3 rounded-full transition-colors ${
+                    className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-colors ${
                       index === currentIndex ? 'bg-primary' : 'bg-base-300'
                     }`}
                     aria-label={`Go to testimonial ${index + 1}`}
@@ -172,12 +172,12 @@ const Testimonials = () => {
               
               <motion.button
                 onClick={nextTestimonial}
-                className="p-3 rounded-full bg-primary text-primary-content hover:bg-secondary transition-colors"
+                className="p-2 sm:p-3 rounded-full bg-primary text-primary-content hover:bg-secondary transition-colors"
                 aria-label="Next testimonial"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >
-                <FaChevronRight />
+                <FaChevronRight className="text-sm sm:text-base" />
               </motion.button>
             </motion.div>
           </motion.div>

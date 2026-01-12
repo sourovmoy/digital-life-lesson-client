@@ -16,11 +16,11 @@ const FeaturedLessons = () => {
   if (isLoading) return <LoadingSpinner />;
   return (
     <div>
-      <section className="featured-lessons my-20">
-        <h3 className="text-2xl font-bold text-center mb-6">
+      <section className="featured-lessons my-12 sm:my-16 lg:my-20">
+        <h3 className="text-xl sm:text-2xl font-bold text-center mb-4 sm:mb-6">
           Featured Life Lessons
         </h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {featuredLessons.map((lesson) => (
             <LessonCard key={lesson._id} lesson={lesson} />
           ))}

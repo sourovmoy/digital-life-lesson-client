@@ -33,19 +33,19 @@ const Newsletter = () => {
 
   if (isSubscribed) {
     return (
-      <section className="newsletter-section py-16 bg-gradient-to-r from-primary to-secondary">
-        <div className="container mx-auto px-4 text-center">
+      <section className="newsletter-section py-12 sm:py-16 bg-gradient-to-r from-primary to-secondary">
+        <div className="container mx-auto px-4 sm:px-6 text-center">
           <div className="max-w-2xl mx-auto">
-            <FaCheckCircle className="text-6xl text-primary-content mx-auto mb-6" />
-            <h2 className="text-3xl md:text-4xl font-bold text-primary-content mb-4">
+            <FaCheckCircle className="text-4xl sm:text-5xl md:text-6xl text-primary-content mx-auto mb-4 sm:mb-6" />
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary-content mb-3 sm:mb-4">
               Thank You for Subscribing!
             </h2>
-            <p className="text-lg text-primary-content/90 mb-6">
+            <p className="text-base sm:text-lg text-primary-content/90 mb-4 sm:mb-6 px-4">
               You'll receive our weekly digest of the most inspiring life lessons and community highlights.
             </p>
             <button
               onClick={() => setIsSubscribed(false)}
-              className="bg-primary-content text-primary px-6 py-3 rounded-lg font-semibold hover:bg-primary-content/90 transition-colors"
+              className="bg-primary-content text-primary px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg font-semibold hover:bg-primary-content/90 transition-colors text-sm sm:text-base"
             >
               Subscribe Another Email
             </button>
@@ -56,37 +56,38 @@ const Newsletter = () => {
   }
 
   return (
-    <section className="newsletter-section py-16 bg-gradient-to-r from-primary to-secondary">
-      <div className="container mx-auto px-4">
+    <section className="newsletter-section py-12 sm:py-16 bg-gradient-to-r from-primary to-secondary">
+      <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-2xl mx-auto text-center">
-          <FaEnvelope className="text-5xl text-primary-content mx-auto mb-6" />
-          <h2 className="text-3xl md:text-4xl font-bold text-primary-content mb-4">
+          <FaEnvelope className="text-3xl sm:text-4xl md:text-5xl text-primary-content mx-auto mb-4 sm:mb-6" />
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary-content mb-3 sm:mb-4">
             Stay Inspired Weekly
           </h2>
-          <p className="text-lg text-primary-content/90 mb-8">
+          <p className="text-base sm:text-lg text-primary-content/90 mb-6 sm:mb-8 px-4">
             Get the best life lessons, community highlights, and personal growth tips delivered to your inbox every week.
           </p>
           
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 sm:gap-4 max-w-lg mx-auto">
             <div className="flex-1">
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email address"
-                className="w-full px-4 py-3 rounded-lg bg-primary-content text-primary placeholder-primary/60 focus:outline-none focus:ring-2 focus:ring-primary-content/50 border-2 border-transparent"
+                className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg bg-primary-content text-primary placeholder-primary/60 focus:outline-none focus:ring-2 focus:ring-primary-content/50 border-2 border-transparent text-sm sm:text-base"
                 disabled={isLoading}
               />
             </div>
             <button
               type="submit"
               disabled={isLoading}
-              className="px-6 py-3 bg-primary-content text-primary font-semibold rounded-lg hover:bg-primary-content/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="px-4 sm:px-6 py-2.5 sm:py-3 bg-primary-content text-primary font-semibold rounded-lg hover:bg-primary-content/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm sm:text-base whitespace-nowrap"
             >
               {isLoading ? (
                 <>
-                  <div className="animate-spin rounded-full h-4 w-4 border-2 border-primary border-t-transparent"></div>
-                  Subscribing...
+                  <div className="animate-spin rounded-full h-3 w-3 sm:h-4 sm:w-4 border-2 border-primary border-t-transparent"></div>
+                  <span className="hidden sm:inline">Subscribing...</span>
+                  <span className="sm:hidden">...</span>
                 </>
               ) : (
                 "Subscribe"
@@ -94,7 +95,7 @@ const Newsletter = () => {
             </button>
           </form>
           
-          <p className="text-sm text-primary-content/70 mt-4">
+          <p className="text-xs sm:text-sm text-primary-content/70 mt-3 sm:mt-4 px-4">
             No spam, unsubscribe at any time. We respect your privacy.
           </p>
         </div>

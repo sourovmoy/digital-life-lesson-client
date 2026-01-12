@@ -65,7 +65,7 @@ const TopContributors = () => {
       viewport={{ once: true, margin: "-100px" }}
       className="py-16 bg-gradient-to-br from-base-100 to-base-200"
     >
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header Section */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -119,7 +119,7 @@ const TopContributors = () => {
         ) : (
           <motion.div
             variants={containerVariants}
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 sm:gap-6"
           >
             {contributors.map((user, index) => {
               const rank = getRankIcon(index);
@@ -136,7 +136,7 @@ const TopContributors = () => {
                   }}
                   className="group relative"
                 >
-                  <div className="bg-base-100 rounded-2xl p-6 shadow-lg border border-base-300 hover:shadow-xl transition-all duration-300 text-center relative overflow-hidden">
+                  <div className="bg-base-100 rounded-2xl p-4 sm:p-6 shadow-lg border border-base-300 hover:shadow-xl transition-all duration-300 text-center relative overflow-hidden">
                     {/* Rank Badge */}
                     <div className={`absolute top-3 right-3 ${rank.bg} ${rank.border} border rounded-full p-2`}>
                       <RankIcon className={`w-4 h-4 ${rank.color}`} />
@@ -160,11 +160,11 @@ const TopContributors = () => {
                           <img
                             src={user.photoURL}
                             alt={user.name}
-                            className="mx-auto rounded-full w-20 h-20 object-cover border-4 border-base-300 group-hover:border-primary/50 transition-all duration-300 shadow-lg"
+                            className="mx-auto rounded-full w-16 h-16 sm:w-20 sm:h-20 object-cover border-4 border-base-300 group-hover:border-primary/50 transition-all duration-300 shadow-lg"
                           />
                         ) : (
-                          <div className="mx-auto rounded-full w-20 h-20 bg-gradient-to-br from-primary/20 to-secondary/20 border-4 border-base-300 group-hover:border-primary/50 transition-all duration-300 shadow-lg flex items-center justify-center">
-                            <FaUserCircle className="w-12 h-12 text-primary/70" />
+                          <div className="mx-auto rounded-full w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-primary/20 to-secondary/20 border-4 border-base-300 group-hover:border-primary/50 transition-all duration-300 shadow-lg flex items-center justify-center">
+                            <FaUserCircle className="w-8 h-8 sm:w-12 sm:h-12 text-primary/70" />
                           </div>
                         )}
                         
@@ -178,17 +178,17 @@ const TopContributors = () => {
                     </div>
 
                     {/* User Info */}
-                    <div className="space-y-2">
-                      <h4 className="font-bold text-base-content group-hover:text-primary transition-colors duration-300 truncate">
+                    <div className="space-y-1 sm:space-y-2">
+                      <h4 className="font-bold text-sm sm:text-base text-base-content group-hover:text-primary transition-colors duration-300 truncate">
                         {user.name}
                       </h4>
                       
                       <div className="space-y-1">
-                        <div className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium ${rank.bg} ${rank.color} ${rank.border} border`}>
+                        <div className={`inline-flex items-center gap-1 px-2 sm:px-3 py-1 rounded-full text-xs font-medium ${rank.bg} ${rank.color} ${rank.border} border`}>
                           {getRankLabel(index)}
                         </div>
                         
-                        <p className="text-sm text-base-content/70 font-semibold">
+                        <p className="text-xs sm:text-sm text-base-content/70 font-semibold">
                           📚 {user.totalLessons} Lessons
                         </p>
                       </div>

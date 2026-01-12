@@ -58,13 +58,13 @@ const FAQ = () => {
   };
 
   return (
-    <section className="faq-section py-16 bg-base-100">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-base-content mb-4">
+    <section className="faq-section py-12 sm:py-16 bg-base-100">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-base-content mb-3 sm:mb-4">
             Frequently Asked Questions
           </h2>
-          <p className="text-lg text-base-content/70 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-base-content/70 max-w-2xl mx-auto px-4">
             Got questions? We've got answers. Find everything you need to know about our platform.
           </p>
         </div>
@@ -73,26 +73,26 @@ const FAQ = () => {
           {faqData.map((item) => (
             <div
               key={item.id}
-              className="mb-4 bg-base-200 rounded-lg border border-base-300 overflow-hidden"
+              className="mb-3 sm:mb-4 bg-base-200 rounded-lg border border-base-300 overflow-hidden"
             >
               <button
                 onClick={() => toggleItem(item.id)}
-                className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-base-300/50 transition-colors"
+                className="w-full px-4 sm:px-6 py-3 sm:py-4 text-left flex justify-between items-center hover:bg-base-300/50 transition-colors"
               >
-                <h3 className="text-lg font-semibold text-base-content pr-4">
+                <h3 className="text-base sm:text-lg font-semibold text-base-content pr-3 sm:pr-4">
                   {item.question}
                 </h3>
                 {openItems.has(item.id) ? (
-                  <FaChevronUp className="text-primary flex-shrink-0" />
+                  <FaChevronUp className="text-primary flex-shrink-0 text-sm sm:text-base" />
                 ) : (
-                  <FaChevronDown className="text-primary flex-shrink-0" />
+                  <FaChevronDown className="text-primary flex-shrink-0 text-sm sm:text-base" />
                 )}
               </button>
               
               {openItems.has(item.id) && (
-                <div className="px-6 pb-4">
-                  <div className="border-t border-base-300 pt-4">
-                    <p className="text-base-content/80 leading-relaxed">
+                <div className="px-4 sm:px-6 pb-3 sm:pb-4">
+                  <div className="border-t border-base-300 pt-3 sm:pt-4">
+                    <p className="text-sm sm:text-base text-base-content/80 leading-relaxed">
                       {item.answer}
                     </p>
                   </div>
@@ -102,11 +102,11 @@ const FAQ = () => {
           ))}
         </div>
 
-        <div className="text-center mt-12">
-          <p className="text-base-content/70 mb-4">
+        <div className="text-center mt-8 sm:mt-12">
+          <p className="text-sm sm:text-base text-base-content/70 mb-3 sm:mb-4">
             Still have questions?
           </p>
-          <button className="bg-primary text-primary-content px-6 py-3 rounded-lg font-semibold hover:bg-secondary transition-colors">
+          <button className="bg-primary text-primary-content px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg font-semibold hover:bg-secondary transition-colors text-sm sm:text-base">
             Contact Support
           </button>
         </div>

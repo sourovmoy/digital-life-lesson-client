@@ -316,7 +316,7 @@ const Navbar = () => {
             whileTap={{ scale: 0.95 }}
           >
             <Link to="/">
-              <img className="h-20 w-20" src={logo} alt="Digital Life Lessons" />
+              <img className="h-16 w-16 sm:h-18 sm:w-18 md:h-20 md:w-20" src={logo} alt="Digital Life Lessons" />
             </Link>
           </motion.div>
 
@@ -382,7 +382,7 @@ const Navbar = () => {
               <AnimatePresence>
                 {isMobileOpen && (
                   <motion.div 
-                    className="absolute right-0 top-14 w-[300px] bg-base-100 rounded-xl shadow-xl overflow-hidden text-sm border border-base-300 z-50"
+                    className="absolute right-0 top-14 w-[280px] sm:w-[300px] bg-base-100 rounded-xl shadow-xl overflow-hidden text-sm border border-base-300 z-50"
                     initial={{ opacity: 0, y: -10, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -10, scale: 0.95 }}
