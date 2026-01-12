@@ -209,28 +209,28 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-base-100 py-8 px-4">
-      <div className="flex flex-col max-w-lg w-full p-8 rounded-2xl bg-base-200 text-base-content shadow-2xl border border-base-300/50">
-        <div className="mb-8 text-center">
-          <h1 className="my-3 text-4xl font-bold text-base-content">Welcome Back</h1>
-          <p className="text-base text-base-content/70">
+    <div className="flex justify-center items-center min-h-screen bg-base-100 py-4 sm:py-6 md:py-8 px-2 sm:px-4">
+      <div className="flex flex-col max-w-sm sm:max-w-md md:max-w-lg w-full p-3 sm:p-4 md:p-6 lg:p-8 rounded-xl sm:rounded-2xl bg-base-200 text-base-content shadow-xl sm:shadow-2xl border border-base-300/50">
+        <div className="mb-4 sm:mb-6 md:mb-8 text-center">
+          <h1 className="my-2 sm:my-3 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-base-content">Welcome Back</h1>
+          <p className="text-sm sm:text-base text-base-content/70">
             Sign in to access your account
           </p>
         </div>
 
         {/* Quick Login Credentials */}
-        <div className="mb-8">
-          <div className="text-center mb-6">
-            <h3 className="text-xl font-bold text-base-content mb-2">
+        <div className="mb-4 sm:mb-6 md:mb-8">
+          <div className="text-center mb-3 sm:mb-4 md:mb-6">
+            <h3 className="text-base sm:text-lg md:text-xl font-bold text-base-content mb-2">
               🚀 Quick Demo Login
             </h3>
-            <p className="text-sm text-base-content/70">
+            <p className="text-xs sm:text-sm text-base-content/70">
               Click any button below to auto-fill the login form
             </p>
           </div>
           
-          {/* Desktop: Horizontal layout, Mobile: Vertical stack */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+          {/* Responsive grid: 1 column on mobile, 3 on desktop */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3 md:gap-4 mb-3 sm:mb-4">
             {credentials.map((credential, index) => {
               const IconComponent = credential.icon;
               return (
@@ -238,16 +238,15 @@ const Login = () => {
                   key={credential.id}
                   type="button"
                   onClick={() => handleCredentialClick(credential)}
-                  className="relative p-4 rounded-2xl text-white font-semibold transition-all duration-300 shadow-lg hover:shadow-2xl group overflow-hidden border-2 border-white/20"
+                  className="relative p-2 sm:p-3 md:p-4 rounded-lg sm:rounded-xl md:rounded-2xl text-white font-semibold transition-all duration-300 shadow-lg hover:shadow-2xl group overflow-hidden border-2 border-white/20 min-h-[100px] sm:min-h-[120px] md:min-h-[140px]"
                   style={{ 
                     background: `linear-gradient(135deg, ${credential.color} 0%, ${credential.hoverColor} 100%)`
                   }}
                   whileHover={{ 
-                    scale: 1.05,
-                    y: -4,
-                    rotateY: 5
+                    scale: 1.02,
+                    y: -2,
                   }}
-                  whileTap={{ scale: 0.95 }}
+                  whileTap={{ scale: 0.98 }}
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ 
@@ -265,22 +264,22 @@ const Login = () => {
                   
                   <div className="relative z-10 text-center">
                     {/* Icon */}
-                    <div className="w-16 h-16 mx-auto mb-3 bg-white/25 backdrop-blur-sm rounded-2xl flex items-center justify-center group-hover:bg-white/35 transition-all duration-300">
-                      <IconComponent className="text-2xl drop-shadow-lg" />
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 mx-auto mb-1 sm:mb-2 md:mb-3 bg-white/25 backdrop-blur-sm rounded-lg sm:rounded-xl md:rounded-2xl flex items-center justify-center group-hover:bg-white/35 transition-all duration-300">
+                      <IconComponent className="text-lg sm:text-xl md:text-2xl drop-shadow-lg" />
                     </div>
                     
                     {/* Title */}
-                    <div className="font-bold text-lg mb-1 drop-shadow-sm">
+                    <div className="font-bold text-xs sm:text-sm md:text-base lg:text-lg mb-1 drop-shadow-sm">
                       {credential.label.replace('Login as ', '')}
                     </div>
                     
-                    {/* Description */}
-                    <div className="text-sm opacity-90 mb-3 drop-shadow-sm">
+                    {/* Description - hidden on very small screens */}
+                    <div className="text-xs sm:text-sm opacity-90 mb-1 sm:mb-2 md:mb-3 drop-shadow-sm hidden sm:block">
                       {credential.description}
                     </div>
                     
                     {/* Action hint */}
-                    <div className="text-xs opacity-75 bg-white/20 rounded-full px-3 py-1 inline-block backdrop-blur-sm">
+                    <div className="text-xs opacity-75 bg-white/20 rounded-full px-2 sm:px-3 py-1 inline-block backdrop-blur-sm">
                       Click to auto-fill
                     </div>
                   </div>
@@ -289,8 +288,8 @@ const Login = () => {
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
                   
                   {/* Subtle animated particles */}
-                  <div className="absolute top-2 right-2 w-2 h-2 bg-white/30 rounded-full animate-pulse" />
-                  <div className="absolute bottom-3 left-3 w-1 h-1 bg-white/40 rounded-full animate-ping" style={{ animationDelay: '0.5s' }} />
+                  <div className="absolute top-2 right-2 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white/30 rounded-full animate-pulse" />
+                  <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 w-1 h-1 bg-white/40 rounded-full animate-ping" style={{ animationDelay: '0.5s' }} />
                 </motion.button>
               );
             })}
@@ -298,25 +297,25 @@ const Login = () => {
           
           {/* Info card */}
           <motion.div 
-            className="p-4 bg-gradient-to-r from-base-300/30 to-base-300/50 rounded-xl border border-base-300/50 backdrop-blur-sm"
+            className="p-2 sm:p-3 md:p-4 bg-gradient-to-r from-base-300/30 to-base-300/50 rounded-lg sm:rounded-xl border border-base-300/50 backdrop-blur-sm"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.6 }}
           >
             <div className="flex items-center justify-center space-x-2 text-base-content/80">
-              <span className="text-lg">💡</span>
-              <p className="text-sm font-medium">
+              <span className="text-base sm:text-lg">💡</span>
+              <p className="text-xs sm:text-sm font-medium text-center">
                 Demo accounts for testing • Credentials auto-fill instantly • No registration required
               </p>
             </div>
             
             {/* Debug info - remove in production */}
             <div className="mt-2 text-xs text-base-content/60 text-center">
-              <p>⚠️ If login fails, these might be test credentials that need to be created in Firebase Auth</p>
+              <p className="text-xs">⚠️ If login fails, these might be test credentials that need to be created in Firebase Auth</p>
               <button 
                 type="button"
                 onClick={testFirebaseConnection}
-                className="mt-2 px-3 py-1 bg-base-content/10 rounded text-xs hover:bg-base-content/20 transition-colors"
+                className="mt-2 px-2 sm:px-3 py-1 bg-base-content/10 rounded text-xs hover:bg-base-content/20 transition-colors"
               >
                 🔧 Test Firebase Connection
               </button>
@@ -325,19 +324,19 @@ const Login = () => {
         </div>
 
         {/* Divider */}
-        <div className="flex items-center mb-6">
+        <div className="flex items-center mb-3 sm:mb-4 md:mb-6">
           <div className="flex-1 h-px bg-base-300"></div>
-          <p className="px-4 text-sm text-base-content/70 font-medium">Or enter credentials manually</p>
+          <p className="px-2 sm:px-3 md:px-4 text-xs sm:text-sm text-base-content/70 font-medium">Or enter credentials manually</p>
           <div className="flex-1 h-px bg-base-300"></div>
         </div>
 
         {/* Form Start */}
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="space-y-6"
+          className="space-y-3 sm:space-y-4 md:space-y-6"
           noValidate
         >
-          <div className="space-y-5">
+          <div className="space-y-3 sm:space-y-4 md:space-y-5">
             {/* Email Field */}
             <div>
               <label htmlFor="email" className="block mb-2 text-sm font-semibold text-base-content">
@@ -347,7 +346,7 @@ const Login = () => {
                 type="email"
                 id="email"
                 placeholder="Enter your email address"
-                className="w-full px-4 py-3 border rounded-xl border-base-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary bg-base-100 text-base-content transition-all duration-200 placeholder:text-base-content/50"
+                className="w-full px-2 sm:px-3 md:px-4 py-2.5 sm:py-3 md:py-4 border rounded-lg sm:rounded-xl border-base-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary bg-base-100 text-base-content transition-all duration-200 placeholder:text-base-content/50 text-sm sm:text-base"
                 {...register("email", {
                   required: "Email is required",
                   pattern: {
@@ -357,7 +356,7 @@ const Login = () => {
                 })}
               />
               {errors.email && (
-                <p className="text-red-500 text-sm mt-2 flex items-center">
+                <p className="text-red-500 text-xs sm:text-sm mt-2 flex items-center">
                   <span className="mr-1">⚠️</span>
                   {errors.email.message}
                 </p>
@@ -381,7 +380,7 @@ const Login = () => {
                 type="password"
                 id="password"
                 placeholder="Enter your password"
-                className="w-full px-4 py-3 border rounded-xl border-base-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary bg-base-100 text-base-content transition-all duration-200 placeholder:text-base-content/50"
+                className="w-full px-2 sm:px-3 md:px-4 py-2.5 sm:py-3 md:py-4 border rounded-lg sm:rounded-xl border-base-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary bg-base-100 text-base-content transition-all duration-200 placeholder:text-base-content/50 text-sm sm:text-base"
                 {...register("password", {
                   required: "Password is required",
                   minLength: {
@@ -391,7 +390,7 @@ const Login = () => {
                 })}
               />
               {errors.password && (
-                <p className="text-red-500 text-sm mt-2 flex items-center">
+                <p className="text-red-500 text-xs sm:text-sm mt-2 flex items-center">
                   <span className="mr-1">⚠️</span>
                   {errors.password.message}
                 </p>
@@ -403,7 +402,7 @@ const Login = () => {
           <div className="pt-2">
             <motion.button
               type="submit"
-              className="bg-primary hover:bg-secondary w-full rounded-xl py-4 text-primary-content transition-colors font-bold text-lg shadow-lg hover:shadow-xl"
+              className="bg-primary hover:bg-secondary w-full rounded-lg sm:rounded-xl py-2.5 sm:py-3 md:py-4 text-primary-content transition-colors font-bold text-sm sm:text-base md:text-lg shadow-lg hover:shadow-xl min-h-[44px]"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               disabled={loading}
@@ -422,9 +421,9 @@ const Login = () => {
         {/* Form End */}
 
         {/* Divider */}
-        <div className="flex items-center pt-6 space-x-1">
+        <div className="flex items-center pt-3 sm:pt-4 md:pt-6 space-x-1">
           <div className="flex-1 h-px bg-base-300"></div>
-          <p className="px-4 text-sm text-base-content/70 font-medium">
+          <p className="px-2 sm:px-3 md:px-4 text-xs sm:text-sm text-base-content/70 font-medium">
             Or continue with
           </p>
           <div className="flex-1 h-px bg-base-300"></div>
@@ -433,16 +432,16 @@ const Login = () => {
         {/* Google Login */}
         <motion.div
           onClick={handleGoogleSignIn}
-          className="flex justify-center items-center space-x-3 border mt-4 p-4 border-base-300 rounded-xl cursor-pointer hover:bg-base-300/50 transition-all duration-200 shadow-sm hover:shadow-md"
+          className="flex justify-center items-center space-x-2 sm:space-x-3 border mt-2 sm:mt-3 md:mt-4 p-2.5 sm:p-3 md:p-4 border-base-300 rounded-lg sm:rounded-xl cursor-pointer hover:bg-base-300/50 transition-all duration-200 shadow-sm hover:shadow-md min-h-[44px]"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
         >
-          <FcGoogle size={24} />
-          <p className="font-semibold text-base-content">Continue with Google</p>
+          <FcGoogle size={20} className="sm:w-6 sm:h-6" />
+          <p className="font-semibold text-base-content text-sm sm:text-base">Continue with Google</p>
         </motion.div>
 
         {/* Signup Link */}
-        <p className="px-6 text-sm text-center text-base-content/70 mt-6">
+        <p className="px-2 sm:px-4 md:px-6 text-xs sm:text-sm text-center text-base-content/70 mt-3 sm:mt-4 md:mt-6">
           Don&apos;t have an account yet?{" "}
           <Link
             state={from}
